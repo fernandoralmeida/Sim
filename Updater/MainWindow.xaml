@@ -1,0 +1,99 @@
+﻿<Window x:Class="Sim.Updater.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="{Binding Titulo}"
+        TextOptions.TextFormattingMode="Display"
+        UseLayoutRounding="True"
+        WindowStartupLocation="CenterScreen" 
+        AllowsTransparency="True"
+        WindowStyle="None"
+        xmlns:vm="clr-namespace:Sim.Updater.ViewModel"
+        Height="380"
+        Width="600" Icon="sim.downloads.ico" WindowState="{Binding WinState}">
+    <Window.DataContext>
+        <vm:MainWindow/>
+    </Window.DataContext>
+    <Grid>
+        <!--<vw:MainContent Margin="5"/>-->
+        <Frame Source="{Binding PageNavigate}" NavigationUIVisibility="Hidden" Margin="5"/>
+    </Grid>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Themes/ModernUI.xaml"/>
+                <ResourceDictionary Source="Themes/ModernUI.Light.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="AccentColor">YellowGreen</Color>
+            <SolidColorBrush x:Key="Accent" Color="{DynamicResource AccentColor}" />
+        </ResourceDictionary>        
+    </Window.Resources>
+    <Window.Template>
+        <ControlTemplate TargetType="Window">
+            <Border BorderBrush="{DynamicResource WindowBorder}" BorderThickness="1"  Margin="5">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="5" ShadowDepth="0" Color="Black" Opacity="1" Direction="0"/>
+                </Border.Effect>
+                <AdornerDecorator>
+                    <Grid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="36" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            
+                            <Image Grid.RowSpan="3" Stretch="UniformToFill" Opacity=".5" Source="Resources/background.snowflakes.jpg"/>
+                                                        
+                            <!---->
+                            <Border Grid.RowSpan="3" Background="{DynamicResource WindowBackground}" Opacity=".5"/>
+                            
+                            <Border VerticalAlignment="Top" Grid.RowSpan="3" Background="{DynamicResource WindowHeaderGradient}" Height="100"/>
+                            <!-- window background content -->
+                            <ContentPresenter Grid.Row="2" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+
+                            <!-- title bar -->
+                            <Grid Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Icon -->
+                                <Path Width="16" Height="16" Stretch="Uniform"  Fill="{DynamicResource Accent}"
+                                      Data="F1 M 42,19.0002L 34,19.0002L 34,43.7502L 24,33.7502L 24,44.2502L 38,58.2502L 52,44.2502L 52,33.7502L 42,43.7502L 42,19.0002 Z "/>
+                                <!--
+                                <Image Grid.Column="0" ToolTip="{TemplateBinding Title}" Source="{TemplateBinding Icon}"
+                                       HorizontalAlignment="Left" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                -->
+                                <!-- title with menu -->
+                                <Label Grid.Column="1" Content="{TemplateBinding  Title}" VerticalAlignment="Center"/>
+
+                                <!-- window system buttons-->
+                                <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Top">
+                                    <Button Focusable="False" Style="{StaticResource SystemButton}" Command="{Binding CommandMinWin}">
+                                        <Button.Content>
+                                            <Grid Width="13" Height="12" RenderTransform="1,0,0,1,0,1">
+                                                <Path Data="M0,6 L8,6 Z" Width="8" Height="7" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                              Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="2"  />
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+                                    <Button Focusable="False" Style="{StaticResource SystemCloseButton}" Command="{Binding CommandCloseWin}">
+                                        <Button.Content >
+                                            <Grid Width="13" Height="12" RenderTransform="1,0,0,1,0,1">
+                                                <Path Data="M0,0 L8,7 M8,0 L0,7 Z" Width="8" Height="7" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                              Stroke="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" StrokeThickness="1.5"  />
+                                            </Grid>
+                                        </Button.Content>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </AdornerDecorator>
+            </Border>            
+        </ControlTemplate>
+    </Window.Template>
+</Window>

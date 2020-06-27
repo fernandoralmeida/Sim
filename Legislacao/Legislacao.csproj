@@ -1,0 +1,349 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5270A0E7-BE92-4CA4-B4AA-D7DA819D75B2}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sim.Modulos.Legislacao</RootNamespace>
+    <AssemblyName>Sim.Modulo.Legislacao</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\mData.cs" />
+    <Compile Include="Model\mPages.cs" />
+    <Compile Include="Model\mRelatoryDecretos.cs" />
+    <Compile Include="Model\mRelatoryBase.cs" />
+    <Compile Include="Model\mRelatoryLeis.cs" />
+    <Compile Include="Model\mRelatoryLeisComplementares.cs" />
+    <Compile Include="Model\mAcoes.cs" />
+    <Compile Include="Model\mAcoesBase.cs" />
+    <Compile Include="Model\mAcoesConsulta.cs" />
+    <Compile Include="Model\mAcoesExercidas.cs" />
+    <Compile Include="Model\mAcoesRecebidas.cs" />
+    <Compile Include="Model\mDataValidarAcao.cs" />
+    <Compile Include="Model\mDataAddAcao.cs" />
+    <Compile Include="Model\mDataEdit.cs" />
+    <Compile Include="Model\mDataInsert.cs" />
+    <Compile Include="Model\mLegislacao.cs" />
+    <Compile Include="Model\mLegislacaoBase.cs" />
+    <Compile Include="Model\mLegislacaoConsulta.cs" />
+    <Compile Include="Model\mDataSearch.cs" />
+    <Compile Include="Model\mLink.cs" />
+    <Compile Include="Model\mDataRemoveAcao.cs" />
+    <Compile Include="Model\mTipoClassificacao.cs" />
+    <Compile Include="Model\mTipoSituacao.cs" />
+    <Compile Include="Model\mListaTiposGenericos.cs" />
+    <Compile Include="Model\mTabitem.cs" />
+    <Compile Include="Model\mTipoOrigem.cs" />
+    <Compile Include="Model\mTiposGenericos.cs" />
+    <Compile Include="Model\mUserControl.cs" />
+    <Compile Include="Model\mXml.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ViewModel\vmConfig.cs" />
+    <Compile Include="ViewModel\Providers\vmCharts.cs" />
+    <Compile Include="ViewModel\Providers\vmDataReports.cs" />
+    <Compile Include="SqlCommands\SqlCollections.cs" />
+    <Compile Include="ViewModel\vmAdd.cs" />
+    <Compile Include="ViewModel\Providers\vmComboBox.cs" />
+    <Compile Include="ViewModel\Providers\vmFlowDocumentBase.cs" />
+    <Compile Include="ViewModel\Providers\vmFlowDocumentEst.cs" />
+    <Compile Include="ViewModel\Providers\vmFlowDocumentRel.cs" />
+    <Compile Include="ViewModel\vmConsulta.cs" />
+    <Compile Include="ViewModel\vmConsultaC.cs" />
+    <Compile Include="ViewModel\vmEdite.cs" />
+    <Compile Include="ViewModel\vmMainpage.cs" />
+    <Compile Include="ViewModel\vmPages\vmAcoes.cs" />
+    <Compile Include="ViewModel\vmPages\vmAutor.cs" />
+    <Compile Include="ViewModel\vmPages\vmClassDe.cs" />
+    <Compile Include="ViewModel\vmPages\vmLinkPdf.cs" />
+    <Compile Include="ViewModel\vmPages\vmClassLoLc.cs" />
+    <Compile Include="ViewModel\vmPages\vmOrigem.cs" />
+    <Compile Include="ViewModel\vmPages\vmSituacao.cs" />
+    <Compile Include="ViewModel\vmPages\vmTipos.cs" />
+    <Compile Include="ViewModel\vmReports.cs" />
+    <Compile Include="ViewModel\vmSearch.cs" />
+    <Compile Include="ViewModel\vmSearchAdv.cs" />
+    <Compile Include="View\Pages\pAcao.xaml.cs">
+      <DependentUpon>pAcao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\pAutor.xaml.cs">
+      <DependentUpon>pAutor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\pClassDec.xaml.cs">
+      <DependentUpon>pClassDec.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\pClassLoLc.xaml.cs">
+      <DependentUpon>pClassLoLc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\pDenied.xaml.cs">
+      <DependentUpon>pDenied.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\pLinkPdf.xaml.cs">
+      <DependentUpon>pLinkPdf.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\pOrigem.xaml.cs">
+      <DependentUpon>pOrigem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\pSituacao.xaml.cs">
+      <DependentUpon>pSituacao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\pTipos.xaml.cs">
+      <DependentUpon>pTipos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Parts\BlackBox.xaml.cs">
+      <DependentUpon>BlackBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Parts\DataGridView.xaml.cs">
+      <DependentUpon>DataGridView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Parts\Edit.xaml.cs">
+      <DependentUpon>Edit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Parts\ucPrintBox.xaml.cs">
+      <DependentUpon>ucPrintBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\vMainPage.xaml.cs">
+      <DependentUpon>vMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\vpAdd.xaml.cs">
+      <DependentUpon>vpAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\vpConfig.xaml.cs">
+      <DependentUpon>vpConfig.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\vpConsultaC.xaml.cs">
+      <DependentUpon>vpConsultaC.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\vpConsultas.xaml.cs">
+      <DependentUpon>vpConsultas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\vpEdite.xaml.cs">
+      <DependentUpon>vpEdite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\vpReports.xaml.cs">
+      <DependentUpon>vpReports.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Accounts\Accounts.csproj">
+      <Project>{87E110CB-91B6-45D5-A2B8-7BC300D5839D}</Project>
+      <Name>Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Charts\Charts.csproj">
+      <Project>{A792E12A-D6E9-41DD-ACC2-019EBCFA3411}</Project>
+      <Name>Charts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{4d3648e5-ac98-432b-a5a1-4515dd03e2d1}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{282D3F13-B59D-4526-A1C0-894AE91D0583}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvvmHelpers\MvvmHelpers.csproj">
+      <Project>{3b8a6efa-efca-471e-b6d9-dc97863101ec}</Project>
+      <Name>MvvmHelpers</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pdf\Pdf.csproj">
+      <Project>{95449e47-49b0-4362-ba26-a6cb4fb836f6}</Project>
+      <Name>Pdf</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\Pages\pAcao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\pAutor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\pClassDec.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\pClassLoLc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\pDenied.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\pLinkPdf.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\pOrigem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\pSituacao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\pTipos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Parts\BlackBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Parts\DataGridView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Parts\Edit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Parts\ucPrintBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\vMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\vpAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\vpConfig.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\vpConsultaC.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\vpConsultas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\vpEdite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\vpReports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

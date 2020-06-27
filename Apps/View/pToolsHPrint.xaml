@@ -1,0 +1,30 @@
+﻿<Page x:Class="Sim.App.View.pToolsHPrint"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:helpers="clr-namespace:Sim.Common.Helpers;assembly=Sim.Common"
+      mc:Ignorable="d"
+      SnapsToDevicePixels="True"
+      UseLayoutRounding="True"
+	Title="pHeadPrint">
+
+    <Grid>
+
+        <StackPanel Margin="10,42,10,10" >
+            <Label Content="PREFEITURA" Margin="2,5,0,0" />
+            <TextBox Text="{Binding NameOrg}" IsEnabled="{Binding TextBoxEnabledOrg}" helpers:FocusExtension.IsFocused="{Binding IsFocusedName}" Margin="2,0"/>
+
+            <Label Content="FUNDAÇÃO" Margin="2,5,0,0" />
+            <TextBox Text="{Binding SloganOrg}" IsEnabled="{Binding TextBoxEnabledOrg}" helpers:FocusExtension.IsFocused="{Binding IsFocusedSlg}" Margin="2,0"/>
+
+            <Label Content="SECRETARIA" Margin="2,5,0,0"/>
+            <TextBox Text="{Binding DepOrg}" IsEnabled="{Binding TextBoxEnabledOrg}" helpers:FocusExtension.IsFocused="{Binding IsFocusedDep}" Margin="2,0"/>
+
+            <Label Content="SETOR" Margin="2,5,0,0"/>
+            <TextBox Text="{Binding SetorOrg}" IsEnabled="{Binding TextBoxEnabledOrg}" helpers:FocusExtension.IsFocused="{Binding IsFocusedSetor}" Margin="2,0"/>
+
+            <Button Content="{Binding RotuloCommandRelatory}" Margin="2,5" Command="{Binding CommandUpdateRelatory}"/>
+        </StackPanel>
+    </Grid>
+</Page>

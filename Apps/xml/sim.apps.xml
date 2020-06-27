@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<App>
+  <Visual>
+    <Mode>Light</Mode>
+    <Thema>#FF3399FF</Thema>
+    <Wallpaper>...</Wallpaper>
+  </Visual>
+  <PDF>
+    <Legislacao>http://leis.jau.sp.gov.br</Legislacao>
+    <Portaria>...</Portaria>
+    <JOficial>http://www.jau.sp.gov.br/painel/arquivos/jornal/</JOficial>
+  </PDF>
+  <Organizacao>
+    <Name>Prefeitura do Município de Jahu</Name>
+    <Slogan>"Fundada em 15 de Agosto de 1853"</Slogan>
+    <Departamento>...</Departamento>
+    <Setor>...</Setor>
+  </Organizacao>
+</App>

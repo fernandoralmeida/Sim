@@ -1,0 +1,71 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Sim.Common.Controls">
+
+    <Style TargetType="{x:Type local:SuggestingTextBox}">        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:SuggestingTextBox}">
+                    <Grid>
+                        <TextBox x:Name="PART_Editor" CharacterCasing="Upper" Text="{Binding Path=Text, RelativeSource={RelativeSource Mode=TemplatedParent},Mode=TwoWay}" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+                        <Popup x:Name="PART_Popup"
+                               IsOpen="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                               Width="{TemplateBinding ActualWidth}"
+                               HorizontalOffset="0"
+                               MinHeight="25"
+                               MaxHeight="300"
+                               AllowsTransparency="True"
+                               PopupAnimation="Slide"
+                               Focusable="True">
+                            <ListBox x:Name="PART_Selector" Background="{DynamicResource InputBackground}" Focusable="True"/>
+                        </Popup>
+                    </Grid>                    
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+
+    <Style TargetType="{x:Type local:DateComboBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:DateComboBox}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="xborder" Background="{DynamicResource InputBackground}"
+                                BorderBrush="{DynamicResource InputBorder}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Grid.ColumnSpan="4">
+                        </Border>
+                        <ComboBox x:Name="PART_Day" Grid.Column="0"
+                                  SelectedValue="{Binding GetDay, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                  DisplayMemberPath="Day" SelectedValuePath="Value" BorderThickness="1" Margin="0"/>
+
+                        <ComboBox x:Name="PART_Month" Grid.Column="1"
+                                  SelectedValue="{Binding GetMonth, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                  DisplayMemberPath="Month" SelectedValuePath="Value" BorderThickness="1" Margin="0"/>
+
+                        <ComboBox x:Name="PART_Year" Grid.Column="2"
+                                  SelectedValue="{Binding GetYear, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource Mode=TemplatedParent}, Mode=TwoWay}"
+                                  DisplayMemberPath="Year" SelectedValuePath="Value" BorderThickness="1" Margin="0"/>
+
+                        <TextBox x:Name="PART_Text" Grid.Column="3" BorderThickness="0" Margin="0"
+                                 VerticalAlignment="Center"
+                                 Visibility="Collapsed"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="BorderBrush" Value="{DynamicResource Accent}" TargetName="xborder"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

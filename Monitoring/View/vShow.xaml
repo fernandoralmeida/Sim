@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="Sim.Monitoring.View.vShow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:Sim.Monitoring.ViewModel"
+             mc:Ignorable="d" 
+             UseLayoutRounding="True"
+             SnapsToDevicePixels="True">
+
+    <UserControl.DataContext>
+        <vm:vmShow/>
+    </UserControl.DataContext>
+    
+    <Grid>
+        <Grid Margin="20,52,20,20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Name="gOS" DataContext="{Binding DataContextOS}" Header="Info! Sistema Operacional">
+                <StackPanel>
+                    <TextBlock Text="{Binding OS.Version}"/>
+                    <TextBlock Text="{Binding OS.MicroProcessor}"/>
+                    <TextBlock Text="{Binding OS.MicroProcessorSpeed}"/>
+                    <TextBlock Text="{Binding OS.Ram}"/>
+                    <ItemsControl ItemsSource="{Binding OS.Hdd}" Grid.Row="3">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Row="1" Name="gIF"  Header="Info! SIM" DataContext="{Binding DataContextApps}">
+                <StackPanel>
+                    <TextBlock Text="{Binding Apps.Name}"/>
+                    <TextBlock Text="{Binding Apps.Version}"/>
+                    <TextBlock Text="{Binding Apps.Build}"/>
+                    <TextBlock Text="{Binding Apps.Revision}"/>
+                    <TextBlock Text="{Binding Apps.Update}"/>
+                    <TextBlock Text="{Binding Apps.Install}"/>
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Row="2" Name="gMm" Header="Consumo de Memória" DataContext="{Binding DataContextDesempenho}">
+                <StackPanel>
+                    <TextBlock Text="{Binding Memory.Used}"/>
+                    <TextBlock Text="{Binding Memory.Private}"/>
+                    <TextBlock Text="{Binding Memory.Pagined}"/>
+                    <TextBlock Text="{Binding Memory.PeakPagined}"/>
+                    <TextBlock Text="{Binding Memory.Physic}"/>
+                    <TextBlock Text="{Binding Memory.PeakPhysic}"/>
+                    <TextBlock Text="{Binding Memory.Virtual}"/>
+                    <TextBlock Text="{Binding Memory.PeakVirtual}"/>
+                </StackPanel>
+            </GroupBox>
+            <DataGrid Grid.Row="3" ItemsSource="{Binding infoListFiles}" HeadersVisibility="Column" AutoGenerateColumns="True"/>
+        </Grid>
+        <Grid Visibility="Collapsed">
+            <Border Background="Black" Opacity=".5"/>
+            <Grid VerticalAlignment="Center" Width="200" Margin="5">
+                <StackPanel>
+                    <ProgressBar IsIndeterminate="{Binding Startprogress}" MinHeight="15"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

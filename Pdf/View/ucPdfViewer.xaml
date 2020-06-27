@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Sim.Pdf.View.ucPdfViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300" MinWidth="300">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>        
+        <Grid Name="gridPDF" Grid.RowSpan="2" Margin="0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <Image Name="imgPDF"/>
+            </ScrollViewer>
+        </Grid>
+        <Grid Grid.Row="1" Margin="20,10">
+            <Border Background="Black" Opacity="0.5" CornerRadius="5" BorderBrush="Orange" BorderThickness="1"/>
+            <Grid Name="gridHeader" Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="30"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="60"/>
+                </Grid.ColumnDefinitions>
+                <Button Name="goFirst" Content="&lt;&lt;" Grid.Column="0" Margin="2,2,0,2" Click="goFirst_Click"/>
+                <Button Name="goPrev" Content="&lt;" Grid.Column="1" Margin="1,2,0,2" Click="goPrev_Click"/>
+                <Button Name="goNext" Content="&gt;" Grid.Column="2" Margin="1,2,0,2" Click="goNext_Click"/>
+                <Button Name="goLast" Content="&gt;&gt;" Grid.Column="3" Margin="1,2,0,2" Click="goLast_Click"/>
+                <Button Name="goPrint" Content="Imprimir" Grid.Column="5" Margin="0,2,2,2" Click="goPrint_Click"/>
+                <Label Name="Rotulo" Grid.Column="4" HorizontalAlignment="Center" Foreground="White"/>
+            </Grid>
+        </Grid>
+        <Grid Name="gridDown" VerticalAlignment="Center" Visibility="Collapsed" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Downloading..." Grid.Row="0"/>
+            <ProgressBar Name="pgBar" Grid.Row="1" MinHeight="15"/>
+        </Grid>
+    </Grid>
+</UserControl>

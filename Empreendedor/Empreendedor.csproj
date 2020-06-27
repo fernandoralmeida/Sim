@@ -1,0 +1,480 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E143B584-BD20-49AB-8ECC-10D3BE2E3470}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sim.Modulos.Empreendedor</RootNamespace>
+    <AssemblyName>Sim.Modulo.Empreendedor</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <PlatformTarget>x86</PlatformTarget>
+    <OutputPath>bin\x86\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Binaries\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converters\BoolToIndexConverter.cs" />
+    <Compile Include="Model\mAgenda.cs" />
+    <Compile Include="Model\mAtendimento.cs" />
+    <Compile Include="Model\mAtendimentoSebrae.cs" />
+    <Compile Include="Model\mCliente.cs" />
+    <Compile Include="Model\mCNAE.cs" />
+    <Compile Include="Model\mData.cs" />
+    <Compile Include="Model\mDeficiencia.cs" />
+    <Compile Include="Model\mFlowHeader.cs" />
+    <Compile Include="Model\mFormalizada.cs" />
+    <Compile Include="Model\AreaTransferencia.cs" />
+    <Compile Include="Model\mAgendamento.cs" />
+    <Compile Include="Model\mInscricao.cs" />
+    <Compile Include="Model\mMascaras.cs" />
+    <Compile Include="Model\mPerfil.cs" />
+    <Compile Include="Model\mPF_Ext.cs" />
+    <Compile Include="Model\mPF_Sexo.cs" />
+    <Compile Include="Model\mPJ_Ext.cs" />
+    <Compile Include="Model\mReportAtendimentos.cs" />
+    <Compile Include="Model\mReportEmpresas.cs" />
+    <Compile Include="Model\mReportPessoas.cs" />
+    <Compile Include="Model\mReports.cs" />
+    <Compile Include="Model\mReportViabilidade.cs" />
+    <Compile Include="Model\mSegmentos.cs" />
+    <Compile Include="Model\mTiposGenericos.cs" />
+    <Compile Include="Model\mPessoaBase.cs" />
+    <Compile Include="Model\mPF.cs" />
+    <Compile Include="Model\mPJ.cs" />
+    <Compile Include="Model\mViabilidade.cs" />
+    <Compile Include="Model\mVinculos_Ext.cs" />
+    <Compile Include="Model\mVinculos.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ViewModel\Agenda\vmAdd.cs" />
+    <Compile Include="ViewModel\Agenda\vmCliente.cs" />
+    <Compile Include="ViewModel\Agenda\vmDetalhes.cs" />
+    <Compile Include="ViewModel\Agenda\vmEdite.cs" />
+    <Compile Include="ViewModel\Agenda\vmSearch.cs" />
+    <Compile Include="ViewModel\Inscricoes\vmAdd.cs" />
+    <Compile Include="ViewModel\Opcoes\vmAT_Tipos.cs" />
+    <Compile Include="ViewModel\Opcoes\vmCnaeMei.cs" />
+    <Compile Include="ViewModel\Opcoes\vmPF_Sexo.cs" />
+    <Compile Include="ViewModel\Reports\vmAtendimento.cs" />
+    <Compile Include="ViewModel\Reports\vmEmpresas.cs" />
+    <Compile Include="ViewModel\Reports\vmPessoas.cs" />
+    <Compile Include="ViewModel\Reports\vmProvedorGraficos.cs" />
+    <Compile Include="ViewModel\Reports\vmViabilidade.cs" />
+    <Compile Include="ViewModel\Viabilidade\vmMainContent.cs" />
+    <Compile Include="ViewModel\vmAddPF.cs" />
+    <Compile Include="ViewModel\vmAddPJ.cs" />
+    <Compile Include="ViewModel\vmAtendimento.cs" />
+    <Compile Include="ViewModel\Queries\vmqAtendimentos.cs" />
+    <Compile Include="ViewModel\Queries\vmqPessoas.cs" />
+    <Compile Include="ViewModel\Queries\vmqEmpresas.cs" />
+    <Compile Include="ViewModel\Opcoes\vmAT_Origem.cs" />
+    <Compile Include="ViewModel\Opcoes\vmPF_Perfil.cs" />
+    <Compile Include="ViewModel\Opcoes\vmPJ_UsoLocal.cs" />
+    <Compile Include="ViewModel\Opcoes\vmVR_Situacao.cs" />
+    <Compile Include="ViewModel\Opcoes\vmPJ_PF_Segmento.cs" />
+    <Compile Include="ViewModel\Opcoes\vmPJ_Porte.cs" />
+    <Compile Include="ViewModel\Queries\vmqViabilidade.cs" />
+    <Compile Include="ViewModel\vmEdicao.cs" />
+    <Compile Include="ViewModel\vmEmpresas.cs" />
+    <Compile Include="ViewModel\vmMainContent.cs" />
+    <Compile Include="ViewModel\vmPessoas.cs" />
+    <Compile Include="ViewModel\vmViabilidade.cs" />
+    <Compile Include="View\Agenda\pAdd.xaml.cs">
+      <DependentUpon>pAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Agenda\pCliente.xaml.cs">
+      <DependentUpon>pCliente.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Agenda\pDetalhe.xaml.cs">
+      <DependentUpon>pDetalhe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Agenda\pEdite.xaml.cs">
+      <DependentUpon>pEdite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Agenda\pSearch.xaml.cs">
+      <DependentUpon>pSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Atendimento\pEdicao.xaml.cs">
+      <DependentUpon>pEdicao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Inscricoes\pAdd.xaml.cs">
+      <DependentUpon>pAdd.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Inscricoes\pInscritos.xaml.cs">
+      <DependentUpon>pInscritos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Opcoes\pAtendimentos_Tipos.xaml.cs">
+      <DependentUpon>pAtendimentos_Tipos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Opcoes\pCnaeMei.xaml.cs">
+      <DependentUpon>pCnaeMei.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Opcoes\pPF_Sexo.xaml.cs">
+      <DependentUpon>pPF_Sexo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\pAddPF.xaml.cs">
+      <DependentUpon>pAddPF.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\pAddPJ.xaml.cs">
+      <DependentUpon>pAddPJ.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\pAtendimento.xaml.cs">
+      <DependentUpon>pAtendimento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\pMainSA.xaml.cs">
+      <DependentUpon>pMainSA.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\pMainSE.xaml.cs">
+      <DependentUpon>pMainSE.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\pMEmpresas.xaml.cs">
+      <DependentUpon>pMEmpresas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\pMPessoas.xaml.cs">
+      <DependentUpon>pMPessoas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\pMViabilidades.xaml.cs">
+      <DependentUpon>pMViabilidades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\pOpcoes.xaml.cs">
+      <DependentUpon>pOpcoes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Opcoes\pAT_Origem.xaml.cs">
+      <DependentUpon>pAT_Origem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Opcoes\pPF_Perfil.xaml.cs">
+      <DependentUpon>pPF_Perfil.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Opcoes\pPJ_Porte.xaml.cs">
+      <DependentUpon>pPJ_Porte.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Opcoes\pPJ_PF_Segmento.xaml.cs">
+      <DependentUpon>pPJ_PF_Segmento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Opcoes\pVR_Situacao.xaml.cs">
+      <DependentUpon>pVR_Situacao.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Opcoes\pPJ_UsoLocal.xaml.cs">
+      <DependentUpon>pPJ_UsoLocal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\pViabilidade.xaml.cs">
+      <DependentUpon>pViabilidade.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Queries\pcEmpresas.xaml.cs">
+      <DependentUpon>pcEmpresas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Queries\pqAtendimentos.xaml.cs">
+      <DependentUpon>pqAtendimentos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Queries\pqPessoas.xaml.cs">
+      <DependentUpon>pqPessoas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Queries\pqViabilidades.xaml.cs">
+      <DependentUpon>pqViabilidades.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\pAtendimento.xaml.cs">
+      <DependentUpon>pAtendimento.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\pEmpresas.xaml.cs">
+      <DependentUpon>pEmpresas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\pPessoas.xaml.cs">
+      <DependentUpon>pPessoas.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Reports\pViabilidade.xaml.cs">
+      <DependentUpon>pViabilidade.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Sebrae\pSebrae.xaml.cs">
+      <DependentUpon>pSebrae.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shared\ucAgenda.xaml.cs">
+      <DependentUpon>ucAgenda.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shared\ucBlackBox.xaml.cs">
+      <DependentUpon>ucBlackBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shared\ucMsgBox.xaml.cs">
+      <DependentUpon>ucMsgBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shared\ucPreviewBox.xaml.cs">
+      <DependentUpon>ucPreviewBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Shared\ucPrintBox.xaml.cs">
+      <DependentUpon>ucPrintBox.xaml</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Accounts\Accounts.csproj">
+      <Project>{87e110cb-91b6-45d5-a2b8-7bc300d5839d}</Project>
+      <Name>Accounts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Charts\Charts.csproj">
+      <Project>{a792e12a-d6e9-41dd-acc2-019ebcfa3411}</Project>
+      <Name>Charts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{4d3648e5-ac98-432b-a5a1-4515dd03e2d1}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataBRF\DataBRF.csproj">
+      <Project>{44d373b9-1c2e-45c9-a798-d96b75a40143}</Project>
+      <Name>DataBRF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{282d3f13-b59d-4526-a1c0-894ae91d0583}</Project>
+      <Name>Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MvvmHelpers\MvvmHelpers.csproj">
+      <Project>{3b8a6efa-efca-471e-b6d9-dc97863101ec}</Project>
+      <Name>MvvmHelpers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="View\Agenda\pAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Agenda\pCliente.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Agenda\pDetalhe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Agenda\pEdite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Agenda\pSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Atendimento\pEdicao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Inscricoes\pAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Inscricoes\pInscritos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Opcoes\pAtendimentos_Tipos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Opcoes\pCnaeMei.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Opcoes\pPF_Sexo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\pAddPF.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\pAddPJ.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\pAtendimento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\pMainSA.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\pMainSE.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\pMEmpresas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\pMPessoas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\pMViabilidades.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\pOpcoes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Opcoes\pAT_Origem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Opcoes\pPF_Perfil.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Opcoes\pPJ_Porte.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Opcoes\pPJ_PF_Segmento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Opcoes\pVR_Situacao.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Opcoes\pPJ_UsoLocal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\pViabilidade.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Queries\pcEmpresas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Queries\pqAtendimentos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Queries\pqPessoas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Queries\pqViabilidades.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Reports\pAtendimento.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Reports\pEmpresas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Reports\pPessoas.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Reports\pViabilidade.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Sebrae\pSebrae.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Shared\ucAgenda.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Shared\ucBlackBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Shared\ucMsgBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Shared\ucPreviewBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Shared\ucPrintBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

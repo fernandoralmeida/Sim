@@ -1,0 +1,273 @@
+﻿<Page x:Class="Sim.Modulos.Administracao.View.Avaliacao"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:shared="clr-namespace:Sim.Modulos.Administracao.View.Shared"
+      xmlns:vm="clr-namespace:Sim.Modulos.Administracao.ViewModel"
+      mc:Ignorable="d"
+      Language="pt-BR"
+      Title="Avaliacao">
+
+    <Page.DataContext>
+        <vm:Avaliacao/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10,42,10,0" Grid.Row="0" >
+            <WrapPanel HorizontalAlignment="Center">
+                <TextBlock Margin="2">
+                    <Hyperlink NavigateUri="Consulta.xaml">CONSULTAR</Hyperlink>
+                </TextBlock>
+                <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
+                <TextBlock Margin="2">
+                    <Hyperlink NavigateUri="Report.xaml">RELATÓRIOS</Hyperlink>
+                </TextBlock>
+                <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
+<TextBlock Margin="2" IsEnabled="{Binding IsAdmin}">
+                    <Hyperlink NavigateUri="Opcoes.xaml">OPÇÕES</Hyperlink>
+                </TextBlock>
+            </WrapPanel>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="1" Margin="10" HorizontalAlignment="Center" VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="2" Background="{DynamicResource WindowBackground}" Opacity=".5" BorderThickness="1" BorderBrush="{DynamicResource Accent}"/>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="2">
+                    <TextBlock Margin="2" VerticalAlignment="Center" IsEnabled="{Binding IsEnable}">
+                        <Hyperlink NavigateUri="Novo.xaml">NOVA AVALIAÇÃO</Hyperlink>
+                    </TextBlock>
+                    <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
+                    <Button ToolTip="Retornar" Command="{Binding CommandDataPrev}" Style="{StaticResource SystemButtonIcon}">
+                        <Button.Content>
+                            <Path Stretch="Uniform" Height="12" Data="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                  Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"  />
+                        </Button.Content>
+                    </Button>
+                    <DatePicker Background="Transparent" BorderThickness="0" SelectedDate="{Binding DataI}" Margin="2,0" Width="100" />
+                    <Button ToolTip="Retornar" Command="{Binding CommandDataNext}" Style="{StaticResource SystemButtonIcon}">
+                        <Button.Content>
+                            <Path Stretch="Uniform" Height="12" Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                  Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"  />
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+                <DockPanel Grid.Row="1" Grid.Column="0">
+                    <StackPanel Margin="10">
+                        <DataGrid Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding ListarAvaliacoes, NotifyOnSourceUpdated=True}" SelectedIndex="{Binding SelectedRow}" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="Column">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button ToolTip="LANÇAR NOTAS" Command="{Binding DataContext.CommandEdit, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                    CommandParameter="{Binding Indice}" Style="{StaticResource SystemButtonIcon}">
+
+                                                <Path Stretch="Uniform" Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                      Data="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" Height="14" Width="14"/>
+
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding Contador}" ClipboardContentBinding="{x:Null}" Header="..." />
+                                <DataGridTextColumn Binding="{Binding Codigo}" ClipboardContentBinding="{x:Null}" Header="COD." />
+                                <DataGridTextColumn Binding="{Binding Nome}" ClipboardContentBinding="{x:Null}" Header="SERVIDOR" />
+                                <DataGridTextColumn Binding="{Binding Secretaria}" ClipboardContentBinding="{x:Null}" Header="SECRETARIA" />
+                                <DataGridTextColumn Binding="{Binding AnoParAnoImpar}" ClipboardContentBinding="{x:Null}" Header="ANO" />
+                                <DataGridTextColumn Binding="{Binding Pontos}" ClipboardContentBinding="{x:Null}" Header="PTS." />
+                                <DataGridTextColumn Binding="{Binding Resultado}" ClipboardContentBinding="{x:Null}" Header="RESULTADO" />
+                                
+                            </DataGrid.Columns>
+                            <DataGrid.RowDetailsTemplate>
+                                <DataTemplate>
+                                    <FlowDocumentScrollViewer ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+                                        <FlowDocument FontFamily="Segoe UI" FontSize="12">
+                                            <Paragraph Margin="5">
+                                                <Run Text="RESULTADO: "/>
+                                                <Run Text="{Binding Pontos}"/>;
+                                                <Run Text="{Binding Resultado}"/>;
+                                                <Run Text="{Binding DescricaoResultado}"/>;
+                                            </Paragraph>
+                                        </FlowDocument>
+                                    </FlowDocumentScrollViewer>
+                                </DataTemplate>
+                            </DataGrid.RowDetailsTemplate>
+                        </DataGrid>
+                    </StackPanel>
+                </DockPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <Grid Grid.RowSpan="3" Visibility="{Binding PreviewBox}">
+            <Border Background="Black" Opacity=".5"/>
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Background="{DynamicResource WindowBackground}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="3" Background="{DynamicResource WindowBackground}" Opacity=".5" BorderThickness="1" BorderBrush="{DynamicResource Accent}"/>
+                <Grid Grid.Row="0">
+                    <Label Grid.Column="1" FontSize="10" Content="AVALIAÇÃO" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    <Button Grid.Column="2" Command="{Binding CommandClosePreview}" Style="{StaticResource SystemCloseButton}" Grid.Row="0" Content="X" HorizontalAlignment="Right"/>
+                </Grid>                
+                
+                <Grid Grid.Row="1" Margin="5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="2,10" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="CÓDIGO" FontSize="10" Grid.Column="0" Grid.Row="0" Margin="2,0"/>
+                        <Label Content="SERVIDOR" FontSize="10" Grid.Column="1" Grid.Row="0" Margin="2,0"/>
+
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Codigo}" CharacterCasing="Upper" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Nome}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="2,10" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="CARGO" FontSize="10" Grid.Row="0" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Cargo}" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
+                        <Label Grid.Column="1" Content="SECRETARIA" FontSize="10" Grid.Row="0" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Secretaria}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
+                        <Label Grid.Column="2" Content="SETOR" FontSize="10" Grid.Row="0" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Setor}" Grid.Column="2" Grid.Row="1" Margin="2,0"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="2,10" Grid.ColumnSpan="2">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="NÍVEL SALARIAL ATUAL" FontSize="10" Grid.Row="0" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" CharacterCasing="Upper" Text="{Binding Avls.NivelSalarial}" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
+                        <Label Grid.Column="1" Content="DATA ADMISSÃO" FontSize="10" Grid.Row="0" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Admissao, StringFormat=dd/MM/yyyy}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
+                    </Grid>
+
+                    <Grid Grid.Row="3" Margin="2,10" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="SITUAÇÃO" FontSize="10" Grid.Row="0" Grid.Column="0" Margin="2,0"/>
+                        <Label Content="DATA AVALIAÇÃO" FontSize="10" Grid.Column="1" Grid.Row="0" Margin="2,0"/>
+                        <Label Content="ANO PAR/ÍMPAR" Grid.Column="2" FontSize="10" Grid.Row="0" Margin="2,0"/>
+
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Situacao}" Grid.Row="1" Grid.Column="0" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.DataAvaliacao, StringFormat=dd/MM/yyyy}" Grid.Row="1" Grid.Column="1" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.AnoParAnoImpar}" Grid.Row="1" Grid.Column="2" Margin="2,0"/>
+                    </Grid>
+
+                    <Grid Grid.Row="4" Margin="2,10" Grid.ColumnSpan="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Label Content="PONTOS" FontSize="10" Grid.Row="0" Grid.Column="0" Margin="2,0"/>
+                        <Label Content="RESULTADO" FontSize="10" Grid.Column="2" Grid.Row="0" Margin="2,0"/>
+                        <Label Content="DESCRIÇÃO" Grid.Column="3" FontSize="10" Grid.Row="0" Margin="2,0"/>
+
+                        <TextBox Text="{Binding Pontos}" Grid.Row="1" Grid.Column="0" Margin="2,0"/>
+                        <Button Margin="2,0" Grid.Row="1" Grid.Column="1" ToolTip="Auto preencher" Command="{Binding CommandAutoPreencher}" >
+                            <Button.Content>
+                                <Path Stretch="Uniform" Height="12" Data="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                  Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"  />
+                            </Button.Content>
+                        </Button>
+                        <ComboBox Text="{Binding Avls.Resultado}" Grid.Row="1" Grid.Column="2" Margin="2,0">
+                            <ComboBoxItem Content="..." IsSelected="True" />
+                            <ComboBoxItem Content="SUFICIENTE" />
+                            <ComboBoxItem Content="INSUFICIENTE" />
+                        </ComboBox>
+                        <ComboBox Text="{Binding Avls.DescricaoResultado}" Grid.Row="1" Grid.Column="3" Margin="2,0">
+                            <ComboBoxItem Content="..." IsSelected="True" />
+                            <ComboBoxItem Content="APROVADO" />
+                            <ComboBoxItem Content="APROVADO COM PROGRESSÃO" />                            
+                            <ComboBoxItem Content="REPROVADO FAIXA III" />
+                            <ComboBoxItem Content="REPROVADO FAIXA IV" />
+                        </ComboBox>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="2" Margin="7,5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label Content="------ COMANDO ------" FontStyle="Italic" FontSize="10" Margin="2,0" Grid.ColumnSpan="2" Grid.Row="0"/>
+                    <Button Content="LANÇAR NOTA" Grid.Column="0" Grid.Row="1" Command="{Binding CommandGravar}" Margin="2"/>                    
+                </Grid>
+            </Grid>
+        </Grid>
+        <shared:BlackBox Grid.RowSpan="3"/>
+        <shared:MsgBox Grid.RowSpan="3"/>
+    </Grid>
+</Page>
