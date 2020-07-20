@@ -123,6 +123,9 @@
     <Compile Include="View\Report.xaml.cs">
       <DependentUpon>Report.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Servidor.xaml.cs">
+      <DependentUpon>Servidor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Shared\BlackBox.xaml.cs">
       <DependentUpon>BlackBox.xaml</DependentUpon>
     </Compile>
@@ -185,6 +188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Servidor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
