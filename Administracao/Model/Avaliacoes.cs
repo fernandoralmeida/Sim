@@ -16,14 +16,14 @@ namespace Sim.Modulos.Administracao.Model
             get { return indice; }
             set { indice = value; RaisePropertyChanged("Indice"); }
         }
+
+        Servidores servidor = new Servidores();
+        public Servidores Servidor { get { return servidor; } set { servidor = value; RaisePropertyChanged("Servidor"); } }
+
         /// <summary>
-        /// Não utilizado no momento
+        /// obsoleto
         /// </summary>
         /*
-        Servidores servidor;
-        public Servidores Servidor { get { return servidor; } set { servidor = value; RaisePropertyChanged("Servidor"); } }
-        ^*/
-
         string codigo;
         public string Codigo
         {
@@ -77,6 +77,9 @@ namespace Sim.Modulos.Administracao.Model
             get { return admissao; }
             set { admissao = value; RaisePropertyChanged("Admissao"); }
         }
+
+        string anoparanoimpar;
+        public string AnoParAnoImpar { get { return anoparanoimpar; } set { anoparanoimpar = value; RaisePropertyChanged("AnoParAnoImpar"); } }
         
         string situacao;
         public string Situacao
@@ -84,12 +87,10 @@ namespace Sim.Modulos.Administracao.Model
             get { return situacao; }
             set { situacao = value; RaisePropertyChanged("Situacao"); }
         }
-                
+        */
+
         DateTime dataavaliacao;
         public DateTime DataAvaliacao { get { return dataavaliacao; } set { dataavaliacao = value; RaisePropertyChanged("DataAvaliacao"); } }
-
-        string anoparanoimpar;
-        public string AnoParAnoImpar { get { return anoparanoimpar; } set { anoparanoimpar = value; RaisePropertyChanged("AnoParAnoImpar"); } }
 
         string resultado = string.Empty;
         public string Resultado

@@ -66,13 +66,22 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
 
-                            <Label Content="CÓDIGO" FontSize="10" Grid.Column="0" Grid.Row="0" Margin="2,0"/>
-                            <Label Content="SERVIDOR" FontSize="10" Grid.Column="1" Grid.Row="0" Margin="2,0"/>
+                            <Label Content="DATA DA AVALIAÇÃO" FontSize="10" Grid.Column="0" Grid.Row="0" Margin="2,0"/>
+                            <Label Content="CÓDIGO DO SERVIDOR" FontSize="10" Grid.Column="1" Grid.Row="0" Margin="2,0"/>
+                            <Label Content="NOME" FontSize="10" Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" Margin="2,0"/>
 
-                            <TextBox MaxLength="14" Text="{Binding Avaliacao.Codigo}" CharacterCasing="Upper" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
-                            <cmctrl:SuggestingTextBox MinWidth="250" ItemsSource="{Binding Source={StaticResource ResourceKey=servName}}" Delay="200" Threshold="1" Text="{Binding Avaliacao.Nome, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
+                            <DatePicker SelectedDate="{Binding DataAvaliacao}" Grid.Row="1" Grid.Column="0" Margin="2,0"/>
+                            <TextBox MaxLength="14" Text="{Binding Avaliacao.Servidor.Codigo}" CharacterCasing="Upper" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
+                            <Button Command="{Binding CommandGetServidor}" CommandParameter="{Binding Avaliacao.Servidor.Codigo}"  Grid.Row="1" Grid.Column="2" Margin="2,0">
+                                <Button.Content>
+                                    <Path Stretch="Uniform" Height="14" Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Data="F1 M 24,13C 27.1521,13 29.9945,14.3258 32,16.4501L 32,11L 35,14L 35,22L 27,22L 24,19L 29.5903,19C 28.217,17.4656 26.2212,16.5 24,16.5C 20.1969,16.5 17.055,19.3306 16.5661,23L 13.0448,23C 13.5501,17.3935 18.262,13 24,13 Z M 24,31.5C 27.8031,31.5 30.945,28.6694 31.4339,25L 34.9552,25C 34.4499,30.6065 29.738,35 24,35C 20.8479,35 18.0055,33.6742 16,31.5499L 16,37L 13,34L 13,26L 21,26L 24,29L 18.4097,29C 19.783,30.5344 21.7787,31.5 24,31.5 Z"/>
+                                </Button.Content>
+                            </Button>
+                            <TextBox Text="{Binding Avaliacao.Servidor.Nome, Mode=TwoWay}" Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="3" Margin="2,0"/>
 
                         </Grid>
 
@@ -87,11 +96,11 @@
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Content="CARGO" FontSize="10" Grid.Row="0" Margin="2,0"/>
-                            <ComboBox ItemsSource="{Binding Cargos}" Text="{Binding Avaliacao.Cargo}" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
+                            <ComboBox ItemsSource="{Binding Cargos}" Text="{Binding Avaliacao.Servidor.Cargo}" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
                             <Label Grid.Column="1" Content="SECRETARIA" FontSize="10" Grid.Row="0" Margin="2,0"/>
-                            <ComboBox ItemsSource="{Binding Source={StaticResource ResourceKey=secname}}" Text="{Binding Avaliacao.Secretaria, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
+                            <ComboBox ItemsSource="{Binding Source={StaticResource ResourceKey=secname}}" Text="{Binding Avaliacao.Servidor.Secretaria, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
                             <Label Grid.Column="2" Content="SETOR" FontSize="10" Grid.Row="0" Margin="2,0"/>
-                            <cmctrl:SuggestingTextBox MinWidth="185" ItemsSource="{Binding Source={StaticResource ResourceKey=setorname}}" Delay="200" Threshold="1" Text="{Binding Avaliacao.Setor, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" Margin="2,0"/>
+                            <TextBox Text="{Binding Avaliacao.Servidor.Setor, Mode=TwoWay}" Grid.Column="2" Grid.Row="1" Margin="2,0"/>
 
                         </Grid>
 
@@ -106,17 +115,16 @@
                             </Grid.ColumnDefinitions>
                             <Label Grid.Column="0" Content="NÍVEL SALARIAL ATUAL" FontSize="10" Grid.Row="0" Margin="2,0"/>
 
-                            <TextBox CharacterCasing="Upper" Text="{Binding Avaliacao.NivelSalarial}" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
+                            <TextBox CharacterCasing="Upper" Text="{Binding Avaliacao.Servidor.NivelSalarial}" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
 
                             <Label Grid.Column="1" Content="DATA ADMISSÃO" FontSize="10" Grid.Row="0" Margin="2,0"/>
 
-                            <DatePicker SelectedDate="{Binding Avaliacao.Admissao}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
+                            <DatePicker SelectedDate="{Binding Avaliacao.Servidor.Admissao}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
 
                         </Grid>
 
                         <Grid Grid.Row="3" Margin="2,10" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="auto"/>
                             </Grid.ColumnDefinitions>
@@ -126,22 +134,19 @@
                             </Grid.RowDefinitions>
 
                             <Label Content="SITUAÇÃO" FontSize="10" Grid.Row="0" Grid.Column="0" Margin="2,0"/>
-                            <Label Content="DATA AVALIAÇÃO" FontSize="10" Grid.Column="1" Grid.Row="0" Margin="2,0"/>
-                            <Label Content="ANO PAR/ÍMPAR" Grid.Column="2" FontSize="10" Grid.Row="0" Margin="2,0"/>
+                            <Label Content="ANO PAR/ÍMPAR" Grid.Column="1" FontSize="10" Grid.Row="0" Margin="2,0"/>
 
-                            <ComboBox Text="{Binding Avaliacao.Situacao}" SelectedValuePath="string" Grid.Row="1" Grid.Column="0" Margin="2,0">
+                            <ComboBox Text="{Binding Avaliacao.Servidor.Situacao}" SelectedValuePath="string" Grid.Row="1" Grid.Column="0" Margin="2,0">
                                 <ComboBoxItem IsSelected="True">...</ComboBoxItem>
                                 <ComboBoxItem>NORMAL</ComboBoxItem>
                                 <ComboBoxItem>AFASTADO</ComboBoxItem>
                             </ComboBox>
-                            <DatePicker SelectedDate="{Binding DataAvaliacao}" Grid.Row="1" Grid.Column="1" Margin="2,0"/>
-                            <ComboBox Text="{Binding Avaliacao.AnoParAnoImpar}" Grid.Row="1" Grid.Column="2" Margin="2,0">
+                            <ComboBox Text="{Binding Avaliacao.Servidor.AnoParAnoImpar}" Grid.Row="1" Grid.Column="1" Margin="2,0">
                                 <ComboBoxItem IsSelected="True">...</ComboBoxItem>
                                 <ComboBoxItem>ANO PAR</ComboBoxItem>
                                 <ComboBoxItem>ANO ÍMPAR</ComboBoxItem>
                             </ComboBox>
                         </Grid>
-
                     </Grid>
 
                     <Grid Grid.Row="4" Margin="5">

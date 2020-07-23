@@ -1,0 +1,86 @@
+﻿<Page x:Class="Sim.Modulos.Administracao.View.Servidor.Inicio"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      xmlns:cmctrl="clr-namespace:Sim.Common.Controls;assembly=Sim.Common"
+      xmlns:shared="clr-namespace:Sim.Modulos.Administracao.View.Shared"
+      xmlns:vm="clr-namespace:Sim.Modulos.Administracao.ViewModel.Servidor"
+      xmlns:model="clr-namespace:Sim.Modulos.Administracao.Model"
+      SnapsToDevicePixels="True"
+      UseLayoutRounding="True"
+      Language="pt-BR"
+      Title="Servidores">
+
+    <Page.DataContext>
+        <vm:Inicio/>
+    </Page.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Margin="10,42,10,10" Orientation="Horizontal" HorizontalAlignment="Center" Grid.Row="0">
+            <WrapPanel>
+                <TextBlock Margin="2" IsEnabled="{Binding AcessoOK}">
+                <Hyperlink NavigateUri="Novo.xaml">INCLUIR</Hyperlink>
+                </TextBlock>
+                <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
+                <TextBlock Margin="2">
+                <Hyperlink NavigateUri="Consulta.xaml" >CONSULTAR</Hyperlink>
+                </TextBlock>
+                <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
+                <TextBlock Margin="2">
+                <Hyperlink NavigateUri="Report.xaml" >RELATÓRIO</Hyperlink>
+                </TextBlock>
+                <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
+                <TextBlock Margin="2">
+                <Hyperlink >OPÇÕES</Hyperlink>
+                </TextBlock>
+            </WrapPanel>
+        </StackPanel>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalAlignment="Center" Margin="20" >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.RowSpan="2" Background="{DynamicResource WindowBackground}" Opacity=".5" BorderThickness="1" BorderBrush="{DynamicResource Accent}"/>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="2">
+                    <Label Content="ULTIMOS SERVIDORES INCLUÍDOS" Margin="2" VerticalAlignment="Center"/>
+                </StackPanel>
+                <DockPanel Grid.Row="1" Grid.Column="0">
+                    <StackPanel Margin="10">
+                        <DataGrid Grid.Row="1" SelectionMode="Single" ItemsSource="{Binding ListaServidores}" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="Column">
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn>
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button ToolTip="ALTERAR" Command="{Binding DataContext.CommandEdit, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                                    CommandParameter="{Binding Indice}" Style="{StaticResource SystemButtonIcon}">
+
+                                                <Path Stretch="Uniform" Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                                                      Data="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" Height="14" Width="14"/>
+
+                                            </Button>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                                <DataGridTextColumn Binding="{Binding Path=Codigo}" ClipboardContentBinding="{x:Null}" Header="CÓDIGO"/>
+                                <DataGridTextColumn Binding="{Binding Path=Nome}" ClipboardContentBinding="{x:Null}" Header="NOME" />
+                                <DataGridTextColumn Binding="{Binding Path=Cargo, StringFormat=dd/MM/yyyy}" ClipboardContentBinding="{x:Null}" Header="CARGO" />
+                                <DataGridTextColumn Binding="{Binding Path=Secretaria, StringFormat=dd/MM/yyyy}" ClipboardContentBinding="{x:Null}" Header="SEC." />
+                                <DataGridTextColumn Binding="{Binding Path=Setor, StringFormat=dd/MM/yyyy}" ClipboardContentBinding="{x:Null}" Header="SETOR" />
+                                <DataGridTextColumn Binding="{Binding Path=Admissao, StringFormat=yyyy}" ClipboardContentBinding="{x:Null}" Header="ADMISSÃO"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </DockPanel>
+            </Grid>
+        </ScrollViewer>
+
+    </Grid>
+</Page>

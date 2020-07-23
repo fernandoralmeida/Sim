@@ -1,24 +1,26 @@
-﻿<Page x:Class="Sim.Modulos.Administracao.View.Consulta"
+﻿<Page x:Class="Sim.Modulos.Administracao.View.Servidor.Report"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:shared="clr-namespace:Sim.Modulos.Administracao.View.Shared"
-      xmlns:vm="clr-namespace:Sim.Modulos.Administracao.ViewModel"
+      xmlns:vm="clr-namespace:Sim.Modulos.Administracao.ViewModel.Servidor"
       xmlns:model="clr-namespace:Sim.Modulos.Administracao.Model"
+      xmlns:cmctrl="clr-namespace:Sim.Common.Controls;assembly=Sim.Common"
       mc:Ignorable="d"
       SnapsToDevicePixels="True"
       UseLayoutRounding="True"
       KeepAlive="True"
       Language="pt-BR"
-      Title="Consulta">
+      Title="Relatório">
 
     <Page.DataContext>
-        <vm:Consulta />
+        <vm:Report />
     </Page.DataContext>
 
     <Page.Resources>
         <model:RepositorioSecretarias x:Key="sec_name"/>
+        <model:RepositorioSetores x:Key="setor_name"/>
     </Page.Resources>
 
     <Grid>
@@ -32,18 +34,36 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="1" Margin="5" >
-                <Label Content="DATA INICIAL" FontSize="10"  Margin="2,0"/>
-                <DatePicker SelectedDate="{Binding DataI}" Margin="2,0" />
-
-                <StackPanel Margin="0,2">
+                <StackPanel Margin="0,10,0,2">
                     <Label Content="NOME SERVIDOR" FontSize="10" Margin="2,0"/>
                     <TextBox CharacterCasing="Upper" Text="{Binding GetNome}" Margin="2,0" />
                 </StackPanel>
                 <StackPanel Margin="0,2">
-                    <Label Content="SECRETARIA" FontSize="10" Margin="2,0"/>
-                    <ComboBox ItemsSource="{Binding Source={StaticResource ResourceKey=sec_name}}" Text="{Binding GetSecretaria, Mode=TwoWay}" Margin="2,0" SelectedIndex="0"/>
+                    <Label Content="CARGO" FontSize="10" Margin="2,0"/>
+                    <ComboBox ItemsSource="{Binding Cargos}" Text="{Binding GetCargo}" Grid.Column="0" Grid.Row="1" Margin="2,0" SelectedIndex="0"/>
                 </StackPanel>
-
+                <StackPanel Margin="0,2">
+                    <Label Content="SECRETARIA" FontSize="10" Margin="2,0"/>
+                    <ComboBox ItemsSource="{Binding Source={StaticResource ResourceKey=sec_name}}" Text="{Binding GetSecretaria, Mode=TwoWay}" Margin="2,0" SelectedIndex="0" />
+                    <Label Visibility="Collapsed" Content="SETOR" FontSize="10" Margin="2,0"/>
+                    <cmctrl:SuggestingTextBox Visibility="Collapsed" MinWidth="185" ItemsSource="{Binding Source={StaticResource ResourceKey=setor_name}}" Delay="200" Threshold="1" Text="{Binding GetSetor, Mode=TwoWay}" Margin="2,0"/>
+                </StackPanel>
+                <StackPanel Margin="0,2">
+                    <Label Content="SITUAÇÃO" FontSize="10" Margin="2,0"/>
+                    <ComboBox SelectedValue="{Binding GetSituacao}" SelectedValuePath="Content" Margin="2,0" SelectedIndex="0">
+                        <ComboBoxItem Content="..."/>
+                        <ComboBoxItem Content="NORMAL"/>
+                        <ComboBoxItem Content="AFASTADO"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Margin="0,2">
+                    <Label Content="ANO PAR / ÍMPAR" FontSize="10" Margin="2,0"/>
+                    <ComboBox SelectedValue="{Binding GetAnoParImpar}" SelectedValuePath="Content" Margin="2,0" SelectedIndex="0">
+                        <ComboBoxItem Content="..."/>
+                        <ComboBoxItem Content="ANO PAR"/>
+                        <ComboBoxItem Content="ANO ÍMPAR"/>
+                    </ComboBox>
+                </StackPanel>
                 <Grid Margin="0,40,0,5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="32"/>
@@ -69,35 +89,11 @@
             <GridSplitter Margin="0" Grid.Row="1" Width="1" HorizontalAlignment="Right" VerticalAlignment="Stretch"  ResizeBehavior="CurrentAndNext"/>
 
             <DockPanel Grid.Column="1" Grid.Row="1" Margin="5,0,0,0">
-                <DataGrid Grid.Row="1" ItemsSource="{Binding ConsultaAvaliacoes}" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="Column">
-                    <DataGrid.Columns>
-
-                        <DataGridTemplateColumn>
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button ToolTip="LANÇAR NOTAS" Command="{Binding DataContext.CommandEdit, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
-                                                    CommandParameter="{Binding Indice}" Style="{StaticResource SystemButtonIcon}">
-
-                                        <Path Stretch="Uniform" Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
-                                                      Data="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" Height="14" Width="14"/>
-
-                                    </Button>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTextColumn Binding="{Binding Servidor.Codigo}" ClipboardContentBinding="{x:Null}" Header="COD." />
-                        <DataGridTextColumn Binding="{Binding Servidor.Nome}" ClipboardContentBinding="{x:Null}" Header="NOME SERVIDOR" />
-                        <DataGridTextColumn Binding="{Binding Servidor.Cargo}" ClipboardContentBinding="{x:Null}" Header="CARGO" />
-                        <DataGridTextColumn Binding="{Binding Servidor.Secretaria}" ClipboardContentBinding="{x:Null}" Header="SECRETARIA" />
-                        <DataGridTextColumn Binding="{Binding Servidor.Setor}" ClipboardContentBinding="{x:Null}" Header="SETOR" />
-                        <DataGridTextColumn Binding="{Binding DataAvaliacao}" ClipboardContentBinding="{x:Null}" Header="AVALIAÇÃO" />
-                        <DataGridTextColumn Binding="{Binding Servidor.AnoParAnoImpar}" ClipboardContentBinding="{x:Null}" Header="ANO" />
-                        <DataGridTextColumn Binding="{Binding Pontos}" ClipboardContentBinding="{x:Null}" Header="PTS" />
-                        <DataGridTextColumn Binding="{Binding Resultado}" ClipboardContentBinding="{x:Null}" Header="RESULTADO" />
-                        <DataGridTextColumn Binding="{Binding DescricaoResultado}" ClipboardContentBinding="{x:Null}" Header="..." />
-                    </DataGrid.Columns>
-                </DataGrid>
+                <Button VerticalAlignment="Bottom" ToolTip="IMPRIMIR" Command="{Binding CommandPrint}" Margin="5">
+                    <Path Stretch="Uniform" Height="12" Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
+                              Data="M18,3H6V7H18M19,12A1,1 0 0,1 18,11A1,1 0 0,1 19,10A1,1 0 0,1 20,11A1,1 0 0,1 19,12M16,19H8V14H16M19,8H5A3,3 0 0,0 2,11V17H6V21H18V17H22V11A3,3 0 0,0 19,8Z" />
+                </Button>
+                <FlowDocumentPageViewer Document="{Binding ReportDocument}" Grid.Row="1"/>
             </DockPanel>
 
         </Grid>

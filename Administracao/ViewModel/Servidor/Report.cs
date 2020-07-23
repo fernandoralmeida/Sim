@@ -12,7 +12,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using System.Diagnostics;
 
-namespace Sim.Modulos.Administracao.ViewModel
+namespace Sim.Modulos.Administracao.ViewModel.Servidor
 {
     using Sim.Mvvm.Helpers.Notifiers;
     using Sim.Mvvm.Helpers.Commands;
@@ -23,7 +23,7 @@ namespace Sim.Modulos.Administracao.ViewModel
     {
         #region Declarações
         private NavigationService ns;
-        private ObservableCollection<Avaliacoes> _consultaavaliacoes = new ObservableCollection<Avaliacoes>();
+        private ObservableCollection<Servidores> _consultaservidores = new ObservableCollection<Servidores>();
         private Visibility _blackbox = Visibility.Collapsed;
         private Visibility _msgbox = Visibility.Collapsed;
         private string _getnome;
@@ -31,41 +31,41 @@ namespace Sim.Modulos.Administracao.ViewModel
         private string _getsetor;
         private string _getsituacao;
         private string _getanoparimpar;
-        private string _getresultado;
-        private int _getpontosminimo;
-        private string _getdescricao;
-        private DateTime _datai = new DateTime(2020, 01, 01);
+        private string _getcargo;
         private FlowDocument _reportdocument = new FlowDocument();
         private bool _starprogress = false;
         private bool _samedate = false;
+        private ObservableCollection<string> _cargos = new ObservableCollection<string>();
         #endregion
 
         #region Propriedades
         public FlowDocument ReportDocument
         {
             get { return _reportdocument; }
-            set { _reportdocument = value;
+            set
+            {
+                _reportdocument = value;
                 RaisePropertyChanged("ReportDocument");
             }
         }
 
-        public ObservableCollection<Avaliacoes> ConsultaAvaliacoes
+        public ObservableCollection<Servidores> ConsultaServidores
         {
-            get { return _consultaavaliacoes; }
+            get { return _consultaservidores; }
             set
             {
-                _consultaavaliacoes = value;
-                RaisePropertyChanged("ConsultaAvaliacoes");
+                _consultaservidores = value;
+                RaisePropertyChanged("ConsultaServidores");
             }
         }
 
-        public DateTime DataI
+        public ObservableCollection<string> Cargos
         {
-            get { return _datai; }
+            get { return _cargos; }
             set
             {
-                _datai = value;
-                RaisePropertyChanged("DataI");
+                _cargos = value;
+                RaisePropertyChanged("ListaCargos");
             }
         }
 
@@ -92,7 +92,9 @@ namespace Sim.Modulos.Administracao.ViewModel
         public string GetSetor
         {
             get { return _getsetor; }
-            set { _getsetor = value;
+            set
+            {
+                _getsetor = value;
                 RaisePropertyChanged("GetSetor");
             }
         }
@@ -117,33 +119,13 @@ namespace Sim.Modulos.Administracao.ViewModel
             }
         }
 
-        public string GetResultado
+        public string GetCargo
         {
-            get { return _getresultado; }
+            get { return _getcargo; }
             set
             {
-                _getresultado = value;
-                RaisePropertyChanged("GetResultado");
-            }
-        }
-
-        public int GetPontosMinimo
-        {
-            get { return _getpontosminimo; }
-            set
-            {
-                _getpontosminimo = value;
-                RaisePropertyChanged("GetPontosMinimo");
-            }
-        }
-
-        public string GetDescricaoResultado
-        {
-            get { return _getdescricao; }
-            set
-            {
-                _getdescricao = value;
-                RaisePropertyChanged("GetDescricaoResultado");
+                _getcargo = value;
+                RaisePropertyChanged("GetCargo");
             }
         }
 
@@ -233,8 +215,8 @@ namespace Sim.Modulos.Administracao.ViewModel
 
         });
 
-        public ICommand CommandLimpar => new RelayCommand(p => { 
-        
+        public ICommand CommandLimpar => new RelayCommand(p => {
+
 
 
         });
@@ -245,6 +227,7 @@ namespace Sim.Modulos.Administracao.ViewModel
         {
             GlobalNavigation.Pagina = "RELATÓRIO";
             ns = GlobalNavigation.NavService;
+            Cargos = ListarCargos().Result;
         }
         #endregion
 
@@ -253,13 +236,6 @@ namespace Sim.Modulos.Administracao.ViewModel
         private List<string> Parametros()
         {
             var l = new List<string>();
-
-            l.Add(DataI.ToString("dd/MM/yyyy"));
-
-            if (SameDate == true)
-                l.Add(DataI.ToString("dd/MM/yyyy"));
-            else
-                l.Add(DateTime.Now.ToString("dd/MM/yyyy"));
 
             if (GetNome == string.Empty || GetNome == null)
                 l.Add("%");
@@ -271,7 +247,7 @@ namespace Sim.Modulos.Administracao.ViewModel
             else
                 l.Add(GetSecretaria);
 
-            if (GetSetor == string.Empty || GetSetor == null )
+            if (GetSetor == string.Empty || GetSetor == null)
                 l.Add("%");
             else
                 l.Add(GetSetor);
@@ -286,17 +262,10 @@ namespace Sim.Modulos.Administracao.ViewModel
             else
                 l.Add(GetAnoParImpar);
 
-            if (GetResultado == string.Empty || GetResultado == null || GetResultado == "...")
+            if (GetCargo == string.Empty || GetCargo == null || GetCargo == "...")
                 l.Add("%");
             else
-                l.Add(GetResultado);
-
-            if (GetDescricaoResultado == string.Empty || GetDescricaoResultado == null || GetDescricaoResultado == "...")
-                l.Add("%");
-            else
-                l.Add(GetDescricaoResultado);
-
-            l.Add(GetPontosMinimo.ToString());
+                l.Add(GetCargo);
 
             return l;
         }
@@ -305,13 +274,13 @@ namespace Sim.Modulos.Administracao.ViewModel
         {
             BlackBox = Visibility.Visible;
             var t = Task.Factory.StartNew(() => {
-                ConsultaAvaliacoes = new RepositorioAvaliacoes().Relatorio(Parametros());
+                ConsultaServidores = new RepositorioServidores().Relatorio(Parametros());
 
-                if (ConsultaAvaliacoes.Count >= 0)
+                if (ConsultaServidores.Count >= 0)
                 {
                     Application.Current.Dispatcher.BeginInvoke(new System.Threading.ThreadStart(() =>
                     {
-                        ReportDocument = ReportPreview(ConsultaAvaliacoes);
+                        ReportDocument = ReportPreview(ConsultaServidores);
                     }));
                 }
             });
@@ -319,10 +288,20 @@ namespace Sim.Modulos.Administracao.ViewModel
             return t;
         }
 
+        public Task<ObservableCollection<string>> ListarCargos()
+        {
+            var t = Task<ObservableCollection<string>>.Factory.StartNew(() => new RepositorioCargos().TodosCargosAtivos());
+            {
+
+            };
+            t.Wait();
+            return t;
+        }
+
         #endregion
 
         #region Documento
-        private FlowDocument ReportPreview(ObservableCollection<Avaliacoes> obj)
+        private FlowDocument ReportPreview(ObservableCollection<Servidores> obj)
         {
 
             FlowDocument flow = new FlowDocument();
@@ -431,17 +410,17 @@ namespace Sim.Modulos.Administracao.ViewModel
             if (obj != null)
             {
 
-                foreach (Avaliacoes a in obj)
+                foreach (Servidores a in obj)
                 {
 
                     TableRow row = new TableRow();
                     rg.Foreground = Brushes.Black;
                     rg.Rows.Add(row);
                     row.Cells.Add(new TableCell(new Paragraph(new Run(a.Contador.ToString())) { Padding = new Thickness(5) }) { BorderThickness = new Thickness(0.5), BorderBrush = Brushes.Black });
-                    row.Cells.Add(new TableCell(new Paragraph(new Run(a.Servidor.Codigo + " - " + a.Servidor.Nome + "\n" + a.Servidor.Situacao + ", " + a.Servidor.AnoParAnoImpar + "\nAVALIAÇÃO: " + a.DataAvaliacao.ToShortDateString() + " PONTOS: " + a.Pontos + "\nRESULTADO: " + a.Resultado + " " + a.DescricaoResultado)) { Padding = new Thickness(5) }) { BorderThickness = new Thickness(0.5), BorderBrush = Brushes.Black });
-                    row.Cells.Add(new TableCell(new Paragraph(new Run(a.Servidor.Cargo )) { Padding = new Thickness(5) }) { BorderThickness = new Thickness(0.5), BorderBrush = Brushes.Black });
-                    row.Cells.Add(new TableCell(new Paragraph(new Run(a.Servidor.Secretaria)) { Padding = new Thickness(5) }) { BorderThickness = new Thickness(0.5), BorderBrush = Brushes.Black });
-                    row.Cells.Add(new TableCell(new Paragraph(new Run(a.Servidor.Setor)) { Padding = new Thickness(5) }) { BorderThickness = new Thickness(0.5), BorderBrush = Brushes.Black });
+                    row.Cells.Add(new TableCell(new Paragraph(new Run(a.Codigo + " - " + a.Nome + "\n" + a.Situacao + ", " + a.AnoParAnoImpar )) { Padding = new Thickness(5) }) { BorderThickness = new Thickness(0.5), BorderBrush = Brushes.Black });
+                    row.Cells.Add(new TableCell(new Paragraph(new Run(a.Cargo)) { Padding = new Thickness(5) }) { BorderThickness = new Thickness(0.5), BorderBrush = Brushes.Black });
+                    row.Cells.Add(new TableCell(new Paragraph(new Run(a.Secretaria)) { Padding = new Thickness(5) }) { BorderThickness = new Thickness(0.5), BorderBrush = Brushes.Black });
+                    row.Cells.Add(new TableCell(new Paragraph(new Run(a.Setor)) { Padding = new Thickness(5) }) { BorderThickness = new Thickness(0.5), BorderBrush = Brushes.Black });
                     //row.Cells.Add(new TableCell(new Paragraph(new Run("")) { Padding = new Thickness(5, 20, 5, 20) }) { BorderThickness = new Thickness(1, 1, 0, 0), BorderBrush = Brushes.Black });
                     /*
                     if (alt % 2 != 0)

@@ -12,14 +12,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Sim.Modulos.Administracao.View
+namespace Sim.Modulos.Administracao.View.Servidor
 {
     /// <summary>
-    /// Interação lógica para Servidor.xam
+    /// Interação lógica para Novo.xam
     /// </summary>
-    public partial class Servidor : Page
+    public partial class Novo : Page
     {
-        public Servidor()
+        public Novo()
         {
             InitializeComponent();
         }

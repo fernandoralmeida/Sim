@@ -22,6 +22,10 @@
 
         <StackPanel Margin="10,42,10,0" Grid.Row="0" >
             <WrapPanel HorizontalAlignment="Center">
+                <TextBlock Margin="2" VerticalAlignment="Center" IsEnabled="{Binding IsEnable}">
+                        <Hyperlink NavigateUri="Novo.xaml">NOVA AVALIAÇÃO</Hyperlink>
+                </TextBlock>
+                <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
                 <TextBlock Margin="2">
                     <Hyperlink NavigateUri="Consulta.xaml">CONSULTAR</Hyperlink>
                 </TextBlock>
@@ -30,7 +34,7 @@
                     <Hyperlink NavigateUri="Report.xaml">RELATÓRIOS</Hyperlink>
                 </TextBlock>
                 <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
-<TextBlock Margin="2" IsEnabled="{Binding IsAdmin}">
+                <TextBlock Margin="2" IsEnabled="{Binding IsAdmin}">
                     <Hyperlink NavigateUri="Opcoes.xaml">OPÇÕES</Hyperlink>
                 </TextBlock>
             </WrapPanel>
@@ -44,9 +48,7 @@
                 </Grid.RowDefinitions>
                 <Border Grid.RowSpan="2" Background="{DynamicResource WindowBackground}" Opacity=".5" BorderThickness="1" BorderBrush="{DynamicResource Accent}"/>
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="2">
-                    <TextBlock Margin="2" VerticalAlignment="Center" IsEnabled="{Binding IsEnable}">
-                        <Hyperlink NavigateUri="Novo.xaml">NOVA AVALIAÇÃO</Hyperlink>
-                    </TextBlock>
+                    <TextBlock Margin="2" VerticalAlignment="Center" Text="AVALIAÇÕES PARA O DIA"/>
                     <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
                     <Button ToolTip="Retornar" Command="{Binding CommandDataPrev}" Style="{StaticResource SystemButtonIcon}">
                         <Button.Content>
@@ -80,10 +82,10 @@
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
                                 <DataGridTextColumn Binding="{Binding Contador}" ClipboardContentBinding="{x:Null}" Header="..." />
-                                <DataGridTextColumn Binding="{Binding Codigo}" ClipboardContentBinding="{x:Null}" Header="COD." />
-                                <DataGridTextColumn Binding="{Binding Nome}" ClipboardContentBinding="{x:Null}" Header="SERVIDOR" />
-                                <DataGridTextColumn Binding="{Binding Secretaria}" ClipboardContentBinding="{x:Null}" Header="SECRETARIA" />
-                                <DataGridTextColumn Binding="{Binding AnoParAnoImpar}" ClipboardContentBinding="{x:Null}" Header="ANO" />
+                                <DataGridTextColumn Binding="{Binding Servidor.Codigo}" ClipboardContentBinding="{x:Null}" Header="COD." />
+                                <DataGridTextColumn Binding="{Binding Servidor.Nome}" ClipboardContentBinding="{x:Null}" Header="SERVIDOR" />
+                                <DataGridTextColumn Binding="{Binding Servidor.Secretaria}" ClipboardContentBinding="{x:Null}" Header="SECRETARIA" />
+                                <DataGridTextColumn Binding="{Binding Servidor.Setor}" ClipboardContentBinding="{x:Null}" Header="SETOR" />
                                 <DataGridTextColumn Binding="{Binding Pontos}" ClipboardContentBinding="{x:Null}" Header="PTS." />
                                 <DataGridTextColumn Binding="{Binding Resultado}" ClipboardContentBinding="{x:Null}" Header="RESULTADO" />
                                 
@@ -151,8 +153,8 @@
                         <Label Content="CÓDIGO" FontSize="10" Grid.Column="0" Grid.Row="0" Margin="2,0"/>
                         <Label Content="SERVIDOR" FontSize="10" Grid.Column="1" Grid.Row="0" Margin="2,0"/>
 
-                        <TextBox IsReadOnly="True" Text="{Binding Avls.Codigo}" CharacterCasing="Upper" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
-                        <TextBox IsReadOnly="True" Text="{Binding Avls.Nome}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Servidor.Codigo}" CharacterCasing="Upper" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Servidor.Nome}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
 
                     </Grid>
 
@@ -167,11 +169,11 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="CARGO" FontSize="10" Grid.Row="0" Margin="2,0"/>
-                        <TextBox IsReadOnly="True" Text="{Binding Avls.Cargo}" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Servidor.Cargo}" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
                         <Label Grid.Column="1" Content="SECRETARIA" FontSize="10" Grid.Row="0" Margin="2,0"/>
-                        <TextBox IsReadOnly="True" Text="{Binding Avls.Secretaria}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Servidor.Secretaria}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
                         <Label Grid.Column="2" Content="SETOR" FontSize="10" Grid.Row="0" Margin="2,0"/>
-                        <TextBox IsReadOnly="True" Text="{Binding Avls.Setor}" Grid.Column="2" Grid.Row="1" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Servidor.Setor}" Grid.Column="2" Grid.Row="1" Margin="2,0"/>
 
                     </Grid>
 
@@ -185,9 +187,9 @@
                             <ColumnDefinition Width="auto"/>
                         </Grid.ColumnDefinitions>
                         <Label Grid.Column="0" Content="NÍVEL SALARIAL ATUAL" FontSize="10" Grid.Row="0" Margin="2,0"/>
-                        <TextBox IsReadOnly="True" CharacterCasing="Upper" Text="{Binding Avls.NivelSalarial}" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" CharacterCasing="Upper" Text="{Binding Avls.Servidor.NivelSalarial}" Grid.Column="0" Grid.Row="1" Margin="2,0"/>
                         <Label Grid.Column="1" Content="DATA ADMISSÃO" FontSize="10" Grid.Row="0" Margin="2,0"/>
-                        <TextBox IsReadOnly="True" Text="{Binding Avls.Admissao, StringFormat=dd/MM/yyyy}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Servidor.Admissao, StringFormat=dd/MM/yyyy}" Grid.Column="1" Grid.Row="1" Margin="2,0"/>
                     </Grid>
 
                     <Grid Grid.Row="3" Margin="2,10" Grid.ColumnSpan="2">
@@ -205,9 +207,9 @@
                         <Label Content="DATA AVALIAÇÃO" FontSize="10" Grid.Column="1" Grid.Row="0" Margin="2,0"/>
                         <Label Content="ANO PAR/ÍMPAR" Grid.Column="2" FontSize="10" Grid.Row="0" Margin="2,0"/>
 
-                        <TextBox IsReadOnly="True" Text="{Binding Avls.Situacao}" Grid.Row="1" Grid.Column="0" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Servidor.Situacao}" Grid.Row="1" Grid.Column="0" Margin="2,0"/>
                         <TextBox IsReadOnly="True" Text="{Binding Avls.DataAvaliacao, StringFormat=dd/MM/yyyy}" Grid.Row="1" Grid.Column="1" Margin="2,0"/>
-                        <TextBox IsReadOnly="True" Text="{Binding Avls.AnoParAnoImpar}" Grid.Row="1" Grid.Column="2" Margin="2,0"/>
+                        <TextBox IsReadOnly="True" Text="{Binding Avls.Servidor.AnoParAnoImpar}" Grid.Row="1" Grid.Column="2" Margin="2,0"/>
                     </Grid>
 
                     <Grid Grid.Row="4" Margin="2,10" Grid.ColumnSpan="2">

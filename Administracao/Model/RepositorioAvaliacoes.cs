@@ -21,16 +21,16 @@ namespace Sim.Modulos.Administracao.Model
 
                 dataAccess.ClearParameters();
 
-                dataAccess.AddParameters("@Cod_Servidor", obj.Codigo);
-                dataAccess.AddParameters("@Nome", obj.Nome);
-                dataAccess.AddParameters("@Cargo", obj.Cargo);
-                dataAccess.AddParameters("@Secretaria", obj.Secretaria);
-                dataAccess.AddParameters("@Setor", obj.Setor);
-                dataAccess.AddParameters("@NivelSalarial", obj.NivelSalarial);
-                dataAccess.AddParameters("@DataAdmissao", obj.Admissao.ToString("dd/MM/yyyy"));
-                dataAccess.AddParameters("@Situacao", obj.Situacao);
+                dataAccess.AddParameters("@Cod_Servidor", obj.Servidor.Codigo);
+                dataAccess.AddParameters("@Nome", obj.Servidor.Nome);
+                dataAccess.AddParameters("@Cargo", obj.Servidor.Cargo);
+                dataAccess.AddParameters("@Secretaria", obj.Servidor.Secretaria);
+                dataAccess.AddParameters("@Setor", obj.Servidor.Setor);
+                dataAccess.AddParameters("@NivelSalarial", obj.Servidor.NivelSalarial);
+                dataAccess.AddParameters("@DataAdmissao", obj.Servidor.Admissao.ToString("dd/MM/yyyy"));
+                dataAccess.AddParameters("@Situacao", obj.Servidor.Situacao);
                 dataAccess.AddParameters("@DataAvaliacao", obj.DataAvaliacao.ToString("dd/MM/yyyy"));
-                dataAccess.AddParameters("@AnoParImpar", obj.AnoParAnoImpar);
+                dataAccess.AddParameters("@AnoParImpar", obj.Servidor.AnoParAnoImpar);
                 dataAccess.AddParameters("@Pontos", obj.Pontos);
                 dataAccess.AddParameters("@Resultado", obj.Resultado);                
                 dataAccess.AddParameters("@DescricaoResultado", obj.DescricaoResultado);
@@ -53,16 +53,16 @@ namespace Sim.Modulos.Administracao.Model
 
                 dataAccess.ClearParameters();
 
-                dataAccess.AddParameters("@Cod_Servidor", obj.Codigo);
-                dataAccess.AddParameters("@Nome", obj.Nome);
-                dataAccess.AddParameters("@Cargo", obj.Cargo);
-                dataAccess.AddParameters("@Secretaria", obj.Secretaria);
-                dataAccess.AddParameters("@Setor", obj.Setor);
-                dataAccess.AddParameters("@NivelSalarial", obj.NivelSalarial);
-                dataAccess.AddParameters("@DataAdmissao", obj.Admissao.ToString("dd/MM/yyyy"));
-                dataAccess.AddParameters("@Situacao", obj.Situacao);
+                dataAccess.AddParameters("@Cod_Servidor", obj.Servidor.Codigo);
+                dataAccess.AddParameters("@Nome", obj.Servidor.Nome);
+                dataAccess.AddParameters("@Cargo", obj.Servidor.Cargo);
+                dataAccess.AddParameters("@Secretaria", obj.Servidor.Secretaria);
+                dataAccess.AddParameters("@Setor", obj.Servidor.Setor);
+                dataAccess.AddParameters("@NivelSalarial", obj.Servidor.NivelSalarial);
+                dataAccess.AddParameters("@DataAdmissao", obj.Servidor.Admissao.ToString("dd/MM/yyyy"));
+                dataAccess.AddParameters("@Situacao", obj.Servidor.Situacao);
                 dataAccess.AddParameters("@DataAvaliacao", obj.DataAvaliacao.ToString("dd/MM/yyyy"));
-                dataAccess.AddParameters("@AnoParImpar", obj.AnoParAnoImpar);
+                dataAccess.AddParameters("@AnoParImpar", obj.Servidor.AnoParAnoImpar);
                 dataAccess.AddParameters("@Pontos", obj.Pontos);
                 dataAccess.AddParameters("@Resultado", obj.Resultado);
                 dataAccess.AddParameters("@DescricaoResultado", obj.DescricaoResultado);
@@ -117,16 +117,16 @@ namespace Sim.Modulos.Administracao.Model
                 foreach (DataRow dr in dataAccess.Read(@"SELECT * FROM Avaliacoes WHERE (Indice = @Indice)").Rows)
                 {
                     lst.Indice = (int)dr["Indice"];
-                    lst.Codigo = dr["Cod_Servidor"].ToString();
-                    lst.Nome = dr["Nome"].ToString();
-                    lst.Cargo = dr["Cargo"].ToString();
-                    lst.Secretaria = dr["Secretaria"].ToString();
-                    lst.Setor = dr["Setor"].ToString();
-                    lst.NivelSalarial = dr["NivelSalarial"].ToString();
-                    lst.Admissao = (DateTime)dr["DataAdmissao"];
-                    lst.Situacao = dr["Situacao"].ToString();
+                    lst.Servidor.Codigo = dr["Cod_Servidor"].ToString();
+                    lst.Servidor.Nome = dr["Nome"].ToString();
+                    lst.Servidor.Cargo = dr["Cargo"].ToString();
+                    lst.Servidor.Secretaria = dr["Secretaria"].ToString();
+                    lst.Servidor.Setor = dr["Setor"].ToString();
+                    lst.Servidor.NivelSalarial = dr["NivelSalarial"].ToString();
+                    lst.Servidor.Admissao = (DateTime)dr["DataAdmissao"];
+                    lst.Servidor.Situacao = dr["Situacao"].ToString();
                     lst.DataAvaliacao = (DateTime)dr["DataAvaliacao"];
-                    lst.AnoParAnoImpar = dr["AnoParImpar"].ToString();
+                    lst.Servidor.AnoParAnoImpar = dr["AnoParImpar"].ToString();
                     lst.Resultado = dr["Resultado"].ToString();
                     lst.Pontos = (int)dr["Pontos"];
                     lst.DescricaoResultado = dr["DescricaoResultado"].ToString();
@@ -160,20 +160,22 @@ namespace Sim.Modulos.Administracao.Model
                     lst.Add(new Avaliacoes()
                     {
                         Indice = (int)dr["Indice"],
-                        Codigo = dr["Cod_Servidor"].ToString(),
-                        Nome = dr["Nome"].ToString(),
-                        Cargo = dr["Cargo"].ToString(),
-                        Secretaria = dr["Secretaria"].ToString(),
-                        Setor = dr["Setor"].ToString(),
-                        NivelSalarial = dr["NivelSalarial"].ToString(),
-                        Admissao = (DateTime)dr["DataAdmissao"],
-                        Situacao = dr["Situacao"].ToString(),
+                        Servidor = new Servidores() {
+                            Codigo = dr["Cod_Servidor"].ToString(),
+                            Nome = dr["Nome"].ToString(),
+                            Cargo = dr["Cargo"].ToString(),
+                            Secretaria = dr["Secretaria"].ToString(),
+                            Setor = dr["Setor"].ToString(),
+                            NivelSalarial = dr["NivelSalarial"].ToString(),
+                            Admissao = (DateTime)dr["DataAdmissao"],
+                            Situacao = dr["Situacao"].ToString(),                            
+                            AnoParAnoImpar = dr["AnoParImpar"].ToString(),
+                        },
                         DataAvaliacao = (DateTime)dr["DataAvaliacao"],
-                        AnoParAnoImpar = dr["AnoParImpar"].ToString(),
                         Resultado = dr["Resultado"].ToString(),
                         Pontos = (int)dr["Pontos"],
                         DescricaoResultado = dr["DescricaoResultado"].ToString()
-                    }); ;
+                    });                    
                 }
 
                 return lst;
@@ -204,16 +206,19 @@ namespace Sim.Modulos.Administracao.Model
                     lst.Add(new Avaliacoes()
                     {
                         Indice = (int)dr["Indice"],
-                        Codigo = dr["Cod_Servidor"].ToString(),
-                        Nome = dr["Nome"].ToString(),
-                        Cargo = dr["Cargo"].ToString(),
-                        Secretaria = dr["Secretaria"].ToString(),
-                        Setor = dr["Setor"].ToString(),
-                        NivelSalarial = dr["NivelSalarial"].ToString(),
-                        Admissao = Convert.ToDateTime(dr["DataAdmissao"]),
-                        Situacao = dr["Situacao"].ToString(),                        
-                        DataAvaliacao = Convert.ToDateTime(dr["DataAvaliacao"]),
-                        AnoParAnoImpar = dr["AnoParImpar"].ToString(),
+                        Servidor = new Servidores()
+                        {
+                            Codigo = dr["Cod_Servidor"].ToString(),
+                            Nome = dr["Nome"].ToString(),
+                            Cargo = dr["Cargo"].ToString(),
+                            Secretaria = dr["Secretaria"].ToString(),
+                            Setor = dr["Setor"].ToString(),
+                            NivelSalarial = dr["NivelSalarial"].ToString(),
+                            Admissao = (DateTime)dr["DataAdmissao"],
+                            Situacao = dr["Situacao"].ToString(),
+                            AnoParAnoImpar = dr["AnoParImpar"].ToString(),
+                        },
+                        DataAvaliacao = (DateTime)dr["DataAvaliacao"],
                         Resultado = dr["Resultado"].ToString(),
                         Pontos = (int)dr["Pontos"],
                         DescricaoResultado = dr["DescricaoResultado"].ToString(),
@@ -273,16 +278,19 @@ ORDER BY Nome";
                     lst.Add(new Avaliacoes()
                     {
                         Indice = (int)dr["Indice"],
-                        Codigo = dr["Cod_Servidor"].ToString(),
-                        Nome = dr["Nome"].ToString(),
-                        Cargo = dr["Cargo"].ToString(),
-                        Secretaria = dr["Secretaria"].ToString(),
-                        Setor = dr["Setor"].ToString(),
-                        NivelSalarial = dr["NivelSalarial"].ToString(),
-                        Admissao = (DateTime)dr["DataAdmissao"],
-                        Situacao = dr["Situacao"].ToString(),
+                        Servidor = new Servidores()
+                        {
+                            Codigo = dr["Cod_Servidor"].ToString(),
+                            Nome = dr["Nome"].ToString(),
+                            Cargo = dr["Cargo"].ToString(),
+                            Secretaria = dr["Secretaria"].ToString(),
+                            Setor = dr["Setor"].ToString(),
+                            NivelSalarial = dr["NivelSalarial"].ToString(),
+                            Admissao = (DateTime)dr["DataAdmissao"],
+                            Situacao = dr["Situacao"].ToString(),
+                            AnoParAnoImpar = dr["AnoParImpar"].ToString(),
+                        },
                         DataAvaliacao = (DateTime)dr["DataAvaliacao"],
-                        AnoParAnoImpar = dr["AnoParImpar"].ToString(),
                         Resultado = dr["Resultado"].ToString(),
                         Pontos = (int)dr["Pontos"],
                         DescricaoResultado = dr["DescricaoResultado"].ToString(),

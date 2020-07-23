@@ -105,6 +105,11 @@
     <Compile Include="ViewModel\Editar.cs" />
     <Compile Include="ViewModel\Novo.cs" />
     <Compile Include="ViewModel\Report.cs" />
+    <Compile Include="ViewModel\Servidor\Alterar.cs" />
+    <Compile Include="ViewModel\Servidor\Consulta.cs" />
+    <Compile Include="ViewModel\Servidor\Inicio.cs" />
+    <Compile Include="ViewModel\Servidor\Novo.cs" />
+    <Compile Include="ViewModel\Servidor\Report.cs" />
     <Compile Include="View\Avaliacao.xaml.cs">
       <DependentUpon>Avaliacao.xaml</DependentUpon>
     </Compile>
@@ -123,8 +128,20 @@
     <Compile Include="View\Report.xaml.cs">
       <DependentUpon>Report.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Servidor.xaml.cs">
-      <DependentUpon>Servidor.xaml</DependentUpon>
+    <Compile Include="View\Servidor\Consulta.xaml.cs">
+      <DependentUpon>Consulta.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Servidor\Editar.xaml.cs">
+      <DependentUpon>Editar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Servidor\Inicio.xaml.cs">
+      <DependentUpon>Inicio.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Servidor\Novo.xaml.cs">
+      <DependentUpon>Novo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Servidor\Report.xaml.cs">
+      <DependentUpon>Report.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Shared\BlackBox.xaml.cs">
       <DependentUpon>BlackBox.xaml</DependentUpon>
@@ -191,7 +208,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Servidor.xaml">
+    <Page Include="View\Servidor\Consulta.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Servidor\Editar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Servidor\Inicio.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Servidor\Novo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Servidor\Report.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -8,35 +8,34 @@ using System.Windows.Navigation;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
-namespace Sim.Modulos.Administracao.ViewModel
+namespace Sim.Modulos.Administracao.ViewModel.Servidor
 {
+
     using Sim.Modulos.Portarias.Model;
     using Sim.Mvvm.Helpers.Notifiers;
     using Sim.Mvvm.Helpers.Commands;
     using Mvvm.Helpers.Observers;
     using Model;
 
-
     public class Novo : NotifyProperty
     {
         #region Declaracoes
-        private NavigationService ns;
-        private Avaliacoes _avaliacao = new Avaliacoes();
+        public NavigationService ns;
+        private Servidores _servidores = new Servidores();
         private Visibility _blackbox;
         private Visibility _msgbox;
         private ObservableCollection<string> _cargos = new ObservableCollection<string>();
-        private DateTime __dataavaliacao = DateTime.Now;
-        private bool _save_is_ok = false;
+        public bool _save_is_ok = false;
         #endregion
 
         #region Propriedades
-        public Avaliacoes Avaliacao
+        public Servidores Servidor
         {
-            get { return _avaliacao; }
+            get { return _servidores; }
             set
             {
-                _avaliacao = value;
-                RaisePropertyChanged("Avaliacao");
+                _servidores = value;
+                RaisePropertyChanged("Servidor");
             }
         }
 
@@ -59,6 +58,7 @@ namespace Sim.Modulos.Administracao.ViewModel
                 RaisePropertyChanged("BlackBox");
             }
         }
+        
         public Visibility ShowMsgBox
         {
             get { return _msgbox; }
@@ -69,16 +69,6 @@ namespace Sim.Modulos.Administracao.ViewModel
             }
         }
 
-        public DateTime DataAvaliacao
-        {
-            get { return __dataavaliacao; }
-            set
-            {
-                __dataavaliacao = value;
-                Avaliacao.DataAvaliacao = value;
-                RaisePropertyChanged("DataAvaliacao");
-            }
-        }
         #endregion
 
         #region Comandos
@@ -89,22 +79,19 @@ namespace Sim.Modulos.Administracao.ViewModel
         public ICommand CommandCancelar => new RelayCommand(p => {
             ns.GoBack();
         });
-
-        public ICommand CommandGetServidor => new RelayCommand(p => {
-            GetServidor(p.ToString());
-        });
         #endregion
 
         #region Construtor
 
         public Novo()
         {
-            GlobalNavigation.Pagina = "NOVO";
+            GlobalNavigation.Pagina = "INCLUIR SERVIDOR";
             ns = GlobalNavigation.NavService;
             BlackBox = Visibility.Collapsed;
             ShowMsgBox = Visibility.Collapsed;
             Cargos = ListarCargos().Result;
-            Avaliacao.Servidor.Admissao = new DateTime(2020, 01, 01);
+            Servidor.Admissao = new DateTime(2020, 01, 01);
+            Servidor.Ativo = true;
         }
 
         #endregion
@@ -115,29 +102,19 @@ namespace Sim.Modulos.Administracao.ViewModel
         {
             var t = Task.Factory.StartNew(() =>
             {
-                _save_is_ok = new RepositorioAvaliacoes().Gravar(Avaliacao);
+                _save_is_ok = new RepositorioServidores().Gravar(Servidor);
             });
             t.Wait();
             return t;
         }
 
-        private Task<ObservableCollection<string>> ListarCargos()
+        public Task<ObservableCollection<string>> ListarCargos()
         {
-            var t = Task<ObservableCollection<string>>.Factory.StartNew(() => new RepositorioCargos().TodosCargosAtivos()); {
-                
+            var t = Task<ObservableCollection<string>>.Factory.StartNew(() => new RepositorioCargos().TodosCargosAtivos());
+            {
+
             };
             t.Wait();
-            return t;
-        }
-
-        private Task GetServidor(string p)
-        {
-            var t = Task.Factory.StartNew(() => {
-                Avaliacao.Servidor = new RepositorioServidores().Servidor(p);
-            });
-
-            t.Wait();            
-
             return t;
         }
         #endregion

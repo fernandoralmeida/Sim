@@ -148,6 +148,12 @@ namespace Sim.Modulos.Governo.ViewModel
             ns.Navigate(new Uri("/Sim.Modulo.Administracao;component/View/Avaliacao.xaml", UriKind.RelativeOrAbsolute));
         });
 
+        public ICommand GoServidores => new RelayCommand(p =>
+        {
+            GlobalNavigation.UriSubModulo = "/Sim.Modulo.Administracao;component/View/Servidor/Inicio.xaml";
+            ns.Navigate(new Uri("/Sim.Modulo.Administracao;component/View/Servidor/Inicio.xaml", UriKind.RelativeOrAbsolute));
+        });
+
         #endregion
 
         #region Constructors
@@ -258,6 +264,11 @@ namespace Sim.Modulos.Governo.ViewModel
             avaliacoes.CommandExecute = this.GoAvaliacoes;
             avaliacoes.Rotulo = "AVALIAÇÃO FUNCIONAL";
             ButtonsModules.Add(avaliacoes);
+
+            var servidores = new mButton();
+            servidores.CommandExecute = this.GoServidores;
+            servidores.Rotulo = "SERVIDORES MUNICIPAIS";
+            ButtonsModules.Add(servidores);
 
         }
         #endregion

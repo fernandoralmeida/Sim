@@ -1,15 +1,15 @@
-﻿<Page x:Class="Sim.Modulos.Administracao.View.Consulta"
+﻿<Page x:Class="Sim.Modulos.Administracao.View.Servidor.Consulta"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      xmlns:cmctrl="clr-namespace:Sim.Common.Controls;assembly=Sim.Common"
       xmlns:shared="clr-namespace:Sim.Modulos.Administracao.View.Shared"
-      xmlns:vm="clr-namespace:Sim.Modulos.Administracao.ViewModel"
+      xmlns:vm="clr-namespace:Sim.Modulos.Administracao.ViewModel.Servidor"
       xmlns:model="clr-namespace:Sim.Modulos.Administracao.Model"
-      mc:Ignorable="d"
       SnapsToDevicePixels="True"
       UseLayoutRounding="True"
-      KeepAlive="True"
       Language="pt-BR"
       Title="Consulta">
 
@@ -32,9 +32,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Row="1" Margin="5" >
-                <Label Content="DATA INICIAL" FontSize="10"  Margin="2,0"/>
-                <DatePicker SelectedDate="{Binding DataI}" Margin="2,0" />
-
+                
                 <StackPanel Margin="0,2">
                     <Label Content="NOME SERVIDOR" FontSize="10" Margin="2,0"/>
                     <TextBox CharacterCasing="Upper" Text="{Binding GetNome}" Margin="2,0" />
@@ -69,13 +67,12 @@
             <GridSplitter Margin="0" Grid.Row="1" Width="1" HorizontalAlignment="Right" VerticalAlignment="Stretch"  ResizeBehavior="CurrentAndNext"/>
 
             <DockPanel Grid.Column="1" Grid.Row="1" Margin="5,0,0,0">
-                <DataGrid Grid.Row="1" ItemsSource="{Binding ConsultaAvaliacoes}" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="Column">
+                <DataGrid Grid.Row="1" ItemsSource="{Binding ConsultaServidores}" IsReadOnly="True" AutoGenerateColumns="False" HeadersVisibility="Column">
                     <DataGrid.Columns>
-
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Button ToolTip="LANÇAR NOTAS" Command="{Binding DataContext.CommandEdit, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                    <Button ToolTip="ALTERAR" Command="{Binding DataContext.CommandEdit, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
                                                     CommandParameter="{Binding Indice}" Style="{StaticResource SystemButtonIcon}">
 
                                         <Path Stretch="Uniform" Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}"
@@ -85,17 +82,15 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
-
-                        <DataGridTextColumn Binding="{Binding Servidor.Codigo}" ClipboardContentBinding="{x:Null}" Header="COD." />
-                        <DataGridTextColumn Binding="{Binding Servidor.Nome}" ClipboardContentBinding="{x:Null}" Header="NOME SERVIDOR" />
-                        <DataGridTextColumn Binding="{Binding Servidor.Cargo}" ClipboardContentBinding="{x:Null}" Header="CARGO" />
-                        <DataGridTextColumn Binding="{Binding Servidor.Secretaria}" ClipboardContentBinding="{x:Null}" Header="SECRETARIA" />
-                        <DataGridTextColumn Binding="{Binding Servidor.Setor}" ClipboardContentBinding="{x:Null}" Header="SETOR" />
-                        <DataGridTextColumn Binding="{Binding DataAvaliacao}" ClipboardContentBinding="{x:Null}" Header="AVALIAÇÃO" />
-                        <DataGridTextColumn Binding="{Binding Servidor.AnoParAnoImpar}" ClipboardContentBinding="{x:Null}" Header="ANO" />
-                        <DataGridTextColumn Binding="{Binding Pontos}" ClipboardContentBinding="{x:Null}" Header="PTS" />
-                        <DataGridTextColumn Binding="{Binding Resultado}" ClipboardContentBinding="{x:Null}" Header="RESULTADO" />
-                        <DataGridTextColumn Binding="{Binding DescricaoResultado}" ClipboardContentBinding="{x:Null}" Header="..." />
+                        <DataGridTextColumn Binding="{Binding Codigo}" ClipboardContentBinding="{x:Null}" Header="COD." />
+                        <DataGridTextColumn Binding="{Binding Nome}" ClipboardContentBinding="{x:Null}" Header="NOME SERVIDOR" />
+                        <DataGridTextColumn Binding="{Binding Cargo}" ClipboardContentBinding="{x:Null}" Header="CARGO" />
+                        <DataGridTextColumn Binding="{Binding Secretaria}" ClipboardContentBinding="{x:Null}" Header="SECRETARIA" />
+                        <DataGridTextColumn Binding="{Binding Setor}" ClipboardContentBinding="{x:Null}" Header="SETOR" />
+                        <DataGridTextColumn Binding="{Binding Admissao, StringFormat=yyyy}" ClipboardContentBinding="{x:Null}" Header="ADMISSÃO" />
+                        <DataGridTextColumn Binding="{Binding AnoParAnoImpar}" ClipboardContentBinding="{x:Null}" Header="ANO PAR/IMPAR" />
+                        <DataGridTextColumn Binding="{Binding Situacao}" ClipboardContentBinding="{x:Null}" Header="SITUAÇÃO" />
+                        <DataGridTextColumn Binding="{Binding Ativo}" ClipboardContentBinding="{x:Null}" Header="ATIVO" />                        
                     </DataGrid.Columns>
                 </DataGrid>
             </DockPanel>

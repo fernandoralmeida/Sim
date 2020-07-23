@@ -6,14 +6,15 @@ using System.Text;
 namespace Sim.Modulos.Administracao.Model
 {
     using Mvvm.Helpers.Notifiers;
+    using System.Windows.Input.StylusPlugIns;
 
     public class Servidores : NotifyProperty
     {
         int indice;
         public int Indice { get { return indice; } set { indice = value; RaisePropertyChanged("Indice"); } }
 
-        int codigo;
-        public int Codigo
+        string codigo;
+        public string Codigo
         {
             get { return codigo; }
             set
@@ -63,7 +64,28 @@ namespace Sim.Modulos.Administracao.Model
             set { admissao = value; RaisePropertyChanged("Admissao"); }
         }
 
+        string anoparanoimpar;
+        public string AnoParAnoImpar { get { return anoparanoimpar; } set { anoparanoimpar = value; RaisePropertyChanged("AnoParAnoImpar"); } }
+
+        string situacao;
+        public string Situacao
+        {
+            get { return situacao; }
+            set { situacao = value; RaisePropertyChanged("Situacao"); }
+        }
+
         bool ativo;
         public bool Ativo { get { return ativo; } set { ativo = value; RaisePropertyChanged("Ativo"); } }
+
+        int contador;
+        public int Contador
+        {
+            get { return contador; }
+            set
+            {
+                contador = value;
+                RaisePropertyChanged("Contador");
+            }
+        }
     }
 }
