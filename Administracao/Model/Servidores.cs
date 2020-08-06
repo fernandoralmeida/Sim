@@ -44,7 +44,7 @@ namespace Sim.Modulos.Administracao.Model
             }
         }
 
-        string setor;
+        string setor = string.Empty;
         public string Setor { get { return setor; } set { setor = value; RaisePropertyChanged("Setor"); } }
         
         string nivelsalarial;

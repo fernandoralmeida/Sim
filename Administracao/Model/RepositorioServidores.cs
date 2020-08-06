@@ -301,7 +301,7 @@ namespace Sim.Modulos.Administracao.Model
 AND (Secretaria LIKE @Secretaria) 
 AND (Setor LIKE @Setor) 
 AND (Situacao LIKE @Situacao) 
-AND (AnoParImpar LIKE @AnoParImpar) 
+AND (AnoParAnoImpar LIKE @AnoParImpar) 
 AND (Cargo LIKE @Cargo)
 ORDER BY Nome";
 

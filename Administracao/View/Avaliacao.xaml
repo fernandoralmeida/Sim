@@ -48,7 +48,7 @@
                 </Grid.RowDefinitions>
                 <Border Grid.RowSpan="2" Background="{DynamicResource WindowBackground}" Opacity=".5" BorderThickness="1" BorderBrush="{DynamicResource Accent}"/>
                 <StackPanel Grid.Row="0" Orientation="Horizontal" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="2">
-                    <TextBlock Margin="2" VerticalAlignment="Center" Text="AVALIAÇÕES PARA O DIA"/>
+                    <Label Margin="2" VerticalAlignment="Center" Content="AVALIAÇÕES PARA O DIA"/>
                     <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
                     <Button ToolTip="Retornar" Command="{Binding CommandDataPrev}" Style="{StaticResource SystemButtonIcon}">
                         <Button.Content>

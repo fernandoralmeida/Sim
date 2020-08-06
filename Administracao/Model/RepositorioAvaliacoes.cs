@@ -198,10 +198,10 @@ namespace Sim.Modulos.Administracao.Model
 
                 dataAccess.ClearParameters();
 
-                dataAccess.AddParameters("@DataAvaliacao", param.ToString("dd/MM/yyyy"));
+                dataAccess.AddParameters("@DataAvaliacao", param.ToShortDateString());
 
                 int c = 1;
-                foreach (DataRow dr in dataAccess.Read(@"SELECT * FROM Avaliacoes WHERE (DataAvaliacao LIKE @DataAvaliacao) ORDER BY Nome").Rows)
+                foreach (DataRow dr in dataAccess.Read(@"SELECT * FROM Avaliacoes WHERE (DataAvaliacao BETWEEN @DataAvaliacao AND @DataAvaliacao) ORDER BY Nome").Rows)
                 {
                     lst.Add(new Avaliacoes()
                     {

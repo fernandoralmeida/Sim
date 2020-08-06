@@ -254,12 +254,12 @@ namespace Sim.Modulos.Administracao.ViewModel
         {
             var l = new List<string>();
 
-            l.Add(DataI.ToString("dd/MM/yyyy"));
+            l.Add(DataI.ToShortDateString());
 
             if (SameDate == true)
-                l.Add(DataI.ToString("dd/MM/yyyy"));
+                l.Add(DataI.ToShortDateString());
             else
-                l.Add(DateTime.Now.ToString("dd/MM/yyyy"));
+                l.Add(new DateTime(DateTime.Now.Year, 12, 31).ToShortDateString());
 
             if (GetNome == string.Empty || GetNome == null)
                 l.Add("%");
