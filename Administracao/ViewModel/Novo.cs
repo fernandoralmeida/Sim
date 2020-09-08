@@ -79,6 +79,24 @@ namespace Sim.Modulos.Administracao.ViewModel
                 RaisePropertyChanged("DataAvaliacao");
             }
         }
+
+        public ObservableCollection<string> Resultado
+        {
+            get
+            {
+                return new ObservableCollection<string>() {
+                "...", "SUFICIENTE", "INSUFICIENTE"};
+            }
+        }
+
+        public ObservableCollection<string> DescricaoResultado
+        {
+            get
+            {
+                return new ObservableCollection<string>() {
+                "...", "APROVADO", "APROVADO COM PROGRESSÃO", "REPROVADO FAIXA III", "REPROVADO FAIXA IV"};
+            }
+        }
         #endregion
 
         #region Comandos
@@ -92,6 +110,34 @@ namespace Sim.Modulos.Administracao.ViewModel
 
         public ICommand CommandGetServidor => new RelayCommand(p => {
             GetServidor(p.ToString());
+        });
+
+        public ICommand CommandAutoPreencher => new RelayCommand(p => {
+
+            if (Avaliacao.Pontos >= 0 && Avaliacao.Pontos <= 225)
+            {
+                Avaliacao.Resultado = "INSUFICIENTE";
+                Avaliacao.DescricaoResultado = "REPROVADO FAIXA IV";
+            }
+
+            else if (Avaliacao.Pontos >= 226 && Avaliacao.Pontos <= 350)
+            {
+                Avaliacao.Resultado = "INSUFICIENTE";
+                Avaliacao.DescricaoResultado = "REPROVADO FAIXA III";
+            }
+
+            else if (Avaliacao.Pontos >= 351 && Avaliacao.Pontos <= 500)
+            {
+                Avaliacao.Resultado = "SUFICIENTE";
+                Avaliacao.DescricaoResultado = "APROVADO";
+            }
+
+            else if (Avaliacao.Pontos >= 501 && Avaliacao.Pontos <= 600)
+            {
+                Avaliacao.Resultado = "SUFICIENTE";
+                Avaliacao.DescricaoResultado = "APROVADO COM PROGRESSÃO";
+            }
+
         });
         #endregion
 
