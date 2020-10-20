@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows;
@@ -64,6 +60,20 @@ namespace Sim.Modulos.Administracao.ViewModel.OpcoesV
             }
         });
 
+        public ICommand CommandAtivoYesNo => new RelayCommand(p => {
+
+            var objetos = (object[])p;
+            var bloqueado = (System.Windows.Controls.CheckBox)objetos[1];
+
+            var cod = (int)objetos[0];
+            var yesno = (bool)bloqueado.IsChecked;
+
+            if (AtivarYesNo(cod, yesno).IsCompleted == true)
+            {
+                Listar(Setor.Secretaria);
+            }
+        });
+
         public ICommand CommandCancelar => new RelayCommand(p => {
             InsetON = Visibility.Collapsed;
         });
@@ -97,6 +107,17 @@ namespace Sim.Modulos.Administracao.ViewModel.OpcoesV
             var t = Task.Factory.StartNew(() =>
             {
                 new RepositorioSetores().Gravar(Setor);
+            });
+            t.Wait();
+            return t;
+        }
+
+
+        private Task AtivarYesNo(int _cod, bool _yesno)
+        {
+            var t = Task.Factory.StartNew(() =>
+            {
+                new RepositorioSetores().AtivarYesNo(_cod, _yesno);
             });
             t.Wait();
             return t;

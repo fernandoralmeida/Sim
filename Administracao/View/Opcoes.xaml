@@ -28,13 +28,13 @@
 
         <DockPanel Margin="10,42,10,10" Grid.Row="1" Grid.Column="0">
             <StackPanel>
-                <TextBlock Margin="2">
+                <TextBlock Margin="5,10">
                 <Hyperlink NavigateUri="OpcoesV/Cargos.xaml" TargetName="inframe">Lista Cargos</Hyperlink>
                 </TextBlock>
-                <TextBlock Margin="2">
+                <TextBlock Margin="5,10">
                 <Hyperlink NavigateUri="OpcoesV/Secretarias.xaml" TargetName="inframe">Lista Secretaria</Hyperlink>
                 </TextBlock>
-                <TextBlock Margin="2">
+                <TextBlock Margin="5,10 ">
                 <Hyperlink NavigateUri="OpcoesV/Setores.xaml" TargetName="inframe">Lista Setores</Hyperlink>
                 </TextBlock>
             </StackPanel>

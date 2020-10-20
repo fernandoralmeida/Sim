@@ -5,11 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Sim.Modulos.Administracao.View.OpcoesV"
       xmlns:conv="clr-namespace:Sim.Mvvm.Helpers.Converters;assembly=Sim.Mvvm.Helpers"
+      xmlns:vm="clr-namespace:Sim.Modulos.Administracao.ViewModel.OpcoesV"
       mc:Ignorable="d" 
       UseLayoutRounding="True"
       SnapsToDevicePixels="True"
       KeepAlive="True"
       Title="Cargos">
+
+    <Page.DataContext>
+        <vm:Cargos/>
+    </Page.DataContext>
 
     <Page.Resources>
         <conv:Converter x:Key="MultConverter"/>
@@ -20,29 +25,34 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Lista de Cargos" Margin="2,0,0,10"/>
+        <Label Grid.Row="0" Content="Lista de Setores" Margin="2,0,0,10"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBox Grid.Column="0" Grid.Row="0" Margin="2" Text="{Binding NovaClassificacao}"/>
-            <Button Content="Incluir Local" Grid.Column="1" Grid.Row="0" Margin="2" Command="{Binding CommandInsertClassificacao}"/>
-            <DataGrid AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto" HeadersVisibility="Column" ItemsSource="{Binding Listar}" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="2" Margin="2">
+            <TextBox MinWidth="200" CharacterCasing="Upper" Grid.Column="0" Grid.Row="0" Margin="2" Text="{Binding Cargo.Cargo}" />
+            <Button Grid.Column="1" Grid.Row="0" Margin="2" Command="{Binding CommandRefresh}">
+                <Button.Content>
+                    <Path Stretch="Uniform" Height="14" Fill="{Binding Foreground, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Button}}" Data="F1 M 24,13C 27.1521,13 29.9945,14.3258 32,16.4501L 32,11L 35,14L 35,22L 27,22L 24,19L 29.5903,19C 28.217,17.4656 26.2212,16.5 24,16.5C 20.1969,16.5 17.055,19.3306 16.5661,23L 13.0448,23C 13.5501,17.3935 18.262,13 24,13 Z M 24,31.5C 27.8031,31.5 30.945,28.6694 31.4339,25L 34.9552,25C 34.4499,30.6065 29.738,35 24,35C 20.8479,35 18.0055,33.6742 16,31.5499L 16,37L 13,34L 13,26L 21,26L 24,29L 18.4097,29C 19.783,30.5344 21.7787,31.5 24,31.5 Z"/>
+                </Button.Content>
+            </Button>
+            <Button HorizontalAlignment="Left" Content="NOVO" Grid.Column="2" Grid.Row="0" Margin="2" Command="{Binding CommandShow}"/>
+            <DataGrid AutoGenerateColumns="False" HorizontalScrollBarVisibility="Auto" HeadersVisibility="Column" ItemsSource="{Binding ListaCargos}" IsReadOnly="True" Grid.Row="1" Grid.ColumnSpan="3" Margin="2">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Valor}" ClipboardContentBinding="{x:Null}" Header="Código"/>
-                    <DataGridTextColumn Binding="{Binding Nome}" ClipboardContentBinding="{x:Null}" Header="Local"/>
+                    <DataGridTextColumn Binding="{Binding Cargo}" ClipboardContentBinding="{x:Null}" Header="Cargos"/>
                     <DataGridTemplateColumn Header="Ativo">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox Name="classl" Content="Sim" IsChecked="{Binding Ativo}" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding DataContext.CommandBlockClassificacao, RelativeSource={RelativeSource AncestorType={x:Type Page}}}">
+                                <CheckBox Name="classl" Content="Sim" IsChecked="{Binding Ativo}" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding DataContext.CommandAtivoYesNo, RelativeSource={RelativeSource AncestorType={x:Type Page}}}">
                                     <CheckBox.CommandParameter>
                                         <MultiBinding Converter="{StaticResource MultConverter}">
-                                            <Binding Path="Codigo"/>
+                                            <Binding Path="Indice"/>
                                             <Binding ElementName="classl"/>
                                         </MultiBinding>
                                     </CheckBox.CommandParameter>
@@ -52,6 +62,17 @@
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+
+            <Grid Grid.ColumnSpan="3" Grid.Row="1" Visibility="{Binding InsetON}">
+                <Border Background="{DynamicResource WindowBackground}" Opacity=".8"/>
+                <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <WrapPanel Margin="10">
+                        <TextBox CharacterCasing="Upper" MinWidth="200" Margin="2" Text="{Binding Cargo.Cargo}" />
+                        <Button Margin="2" Content="INCLUIR" Command="{Binding CommandSave}" />
+                        <Button Margin="2" Content="X" Command="{Binding CommandCancelar}"/>
+                    </WrapPanel>
+                </Grid>
+            </Grid>
         </Grid>
     </Grid>
 </Page>

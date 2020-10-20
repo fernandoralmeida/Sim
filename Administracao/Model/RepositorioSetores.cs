@@ -43,6 +43,31 @@ namespace Sim.Modulos.Administracao.Model
 
             return lst;
         }
+       
+        public bool AtivarYesNo(int indice, bool yesno)
+        {
+            try
+            {
+                var dataAccess = Instances.DataBase5();
+
+                dataAccess.ClearParameters();
+
+                dataAccess.AddParameters("@Ativo", yesno);
+                dataAccess.AddParameters("@Indice", indice);
+
+                string sql = @"UPDATE Setores SET Ativo = @Ativo WHERE (Indice = @Indice)";
+
+
+                return dataAccess.Write(sql);
+
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
         /// <summary>
         /// Adiciona novo setor no banco de dados.
         /// </summary>
@@ -86,7 +111,7 @@ namespace Sim.Modulos.Administracao.Model
                 dataAccess.ClearParameters();
                 dataAccess.AddParameters("@Sec", "%" + secretaria + "%");
 
-                foreach (DataRow dr in dataAccess.Read(@"SELECT * FROM Setores WHERE (Secretaria LIKE @Sec) AND (Ativo = true) ORDER BY Setor").Rows)
+                foreach (DataRow dr in dataAccess.Read(@"SELECT * FROM Setores WHERE (Secretaria LIKE @Sec) ORDER BY Setor").Rows)
                 {
                     var setor = new Setores
                     {
