@@ -104,6 +104,10 @@
     <Compile Include="ViewModel\Consulta.cs" />
     <Compile Include="ViewModel\Editar.cs" />
     <Compile Include="ViewModel\Novo.cs" />
+    <Compile Include="ViewModel\Opcoes.cs" />
+    <Compile Include="ViewModel\OpcoesV\Cargos.cs" />
+    <Compile Include="ViewModel\OpcoesV\Secretarias.cs" />
+    <Compile Include="ViewModel\OpcoesV\Setores.cs" />
     <Compile Include="ViewModel\Report.cs" />
     <Compile Include="ViewModel\Servidor\Alterar.cs" />
     <Compile Include="ViewModel\Servidor\Consulta.cs" />
@@ -124,6 +128,15 @@
     </Compile>
     <Compile Include="View\Opcoes.xaml.cs">
       <DependentUpon>Opcoes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OpcoesV\Cargos.xaml.cs">
+      <DependentUpon>Cargos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OpcoesV\Secretarias.xaml.cs">
+      <DependentUpon>Secretarias.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\OpcoesV\Setores.xaml.cs">
+      <DependentUpon>Setores.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Report.xaml.cs">
       <DependentUpon>Report.xaml</DependentUpon>
@@ -158,9 +171,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="View\Opcoes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Accounts\Accounts.csproj">
       <Project>{87e110cb-91b6-45d5-a2b8-7bc300d5839d}</Project>
@@ -201,6 +212,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Opcoes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OpcoesV\Cargos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OpcoesV\Secretarias.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\OpcoesV\Setores.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

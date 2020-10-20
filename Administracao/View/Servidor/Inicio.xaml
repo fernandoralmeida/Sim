@@ -38,7 +38,7 @@
                 </TextBlock>
                 <Line X1=".5" Y1="3" X2=".5" Y2="12" Margin="5,0" VerticalAlignment="Center" Stroke="{DynamicResource SeparatorBackground}" />
                 <TextBlock Margin="2">
-                <Hyperlink >OPÇÕES</Hyperlink>
+                <Hyperlink NavigateUri="/Sim.Modulo.Administracao;component/View/Opcoes.xaml" >OPÇÕES</Hyperlink>
                 </TextBlock>
             </WrapPanel>
         </StackPanel>

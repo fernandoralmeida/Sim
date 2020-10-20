@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
+﻿using System.Windows.Controls;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace Sim.Modulos.Administracao.View
 {
@@ -22,6 +12,27 @@ namespace Sim.Modulos.Administracao.View
         public Opcoes()
         {
             InitializeComponent();
+        }
+
+        private void Frame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            if (e.NavigationMode == NavigationMode.New)
+            {
+                ShowFadingContent("FadingContent", (sender as Frame));
+                ShowFadingContent("ShowRightContent", (sender as Frame));
+            }
+
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                ShowFadingContent("FadingContent", (sender as Frame));
+                ShowFadingContent("ShowRightContent", (sender as Frame));
+            }
+        }
+
+        private void ShowFadingContent(string Storyboard, Frame pnl)
+        {
+            Storyboard sb = Resources[Storyboard] as Storyboard;
+            sb.Begin(pnl);
         }
     }
 }
