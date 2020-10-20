@@ -87,6 +87,7 @@
     <Compile Include="Model\RepositorioSetores.cs" />
     <Compile Include="Model\Secretarias.cs" />
     <Compile Include="Model\Servidores.cs" />
+    <Compile Include="Model\Setores.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
