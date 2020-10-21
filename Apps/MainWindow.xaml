@@ -17,10 +17,11 @@
             </Grid.ColumnDefinitions>
             <!-- Menu Lateral -->
             <Grid x:Name="mLateral" Grid.Column="0" Visibility="{Binding MenuOn}" IsVisibleChanged="mLateral_IsVisibleChanged">
-                <Border Background="{DynamicResource WindowBackground}" BorderThickness="0">
+                <Border Background="{DynamicResource WindowBackground}" BorderBrush="{DynamicResource ButtonBorder}" BorderThickness="0,0,1,0">
+                    <!--
                     <Border.Effect>
                         <DropShadowEffect BlurRadius="10" ShadowDepth="0" Direction="90" Opacity=".5" Color="Black"/>
-                    </Border.Effect>
+                    </Border.Effect>-->
                 </Border>
                 <StackPanel VerticalAlignment="Center" Orientation="Vertical">
                     <!-- Profile Settings -->
